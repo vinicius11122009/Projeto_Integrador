@@ -1,0 +1,26 @@
+<footer>
+
+    <div class="container">
+
+        <p>
+            Site educativo sobre Robótica,
+            Tecnociência e Informação.
+        </p>
+
+        <p>
+            Desenvolvido com foco em acessibilidade,
+            inclusão digital e pensamento crítico.
+        </p>
+
+        <h3>Equipe</h3>
+
+        <ul class="equipe">
+            <li>Vinicius Lima</li>
+            <li>Pedro Emanuel</li>
+            <li>Gabriel Mendes</li>
+            <li>Gabriel Maricato</li>
+        </ul>
+
+    </div>
+
+</footer>
