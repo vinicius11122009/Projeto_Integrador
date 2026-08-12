@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Site educativo sobre robótica, tecnociência e combate às fake news."
+    >
+
+    <title>Robótica, Tecnociência e Informação</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Acessibilidade: pular para o conteúdo -->
+    <a href="#conteudo" class="skip-link">
+        Pular para o conteúdo principal
+    </a>
+
+    <!-- CABEÇALHO -->
+    <header>
+        <div class="container">
+            <h1>Robótica, Tecnociência e Informação</h1>
+
+            <p>
+                Um espaço educativo para aprender, explorar tecnologias
+                e desenvolver o pensamento crítico.
+            </p>
+        </div>
+    </header>
+
+    <!-- PAINEL DE ACESSIBILIDADE -->
+    <section
+        class="accessibility-panel"
+        aria-label="Ferramentas de acessibilidade"
+    >
+        <div class="container accessibility-container">
+
+            <strong>Acessibilidade:</strong>
+
+            <button
+                id="aumentarFonte"
+                type="button"
+                aria-label="Aumentar tamanho do texto"
+            >
+                A+ Aumentar texto
+            </button>
+
+            <button
+                id="diminuirFonte"
+                type="button"
+                aria-label="Diminuir tamanho do texto"
+            >
+                A- Diminuir texto
+            </button>
+
+            <button
+                id="espacamento"
+                type="button"
+                aria-pressed="false"
+            >
+                ↕ Espaçamento
+            </button>
+
+            <button
+                id="altoContraste"
+                type="button"
+                aria-pressed="false"
+            >
+                ◐ Alto contraste
+            </button>
+
+            <button
+                id="fonteNormal"
+                type="button"
+            >
+                ↺ Restaurar
+            </button>
+
+        </div>
+    </section>
+
+    <!-- MENU -->
+    <nav aria-label="Menu principal">
+
+        <div class="container nav-container">
+
+            <button
+                class="nav-button active"
+                data-section="introducao"
+                type="button"
+            >
+                Introdução
+            </button>
+
+            <button
+                class="nav-button"
+                data-section="robotica"
+                type="button"
+            >
+                Robótica
+            </button>
+
+            <button
+                class="nav-button"
+                data-section="tecnociencia"
+                type="button"
+            >
+                Tecnociência
+            </button>
+
+            <button
+                class="nav-button"
+                data-section="fakenews"
+                type="button"
+            >
+                Fake News
+            </button>
+
+        </div>
+
+    </nav>
+
+    <!-- CONTEÚDO -->
+    <main id="conteudo" class="container">
+
+        <!-- INTRODUÇÃO -->
+        <section
+            id="introducao"
+            class="content-section active"
+            aria-labelledby="titulo-introducao"
+        >
+
+            <h2 id="titulo-introducao">
+                Introdução
+            </h2>
+
+            <div class="intro-box">
+
+                <p>
+                    Bem-vindo ao nosso espaço de aprendizagem sobre
+                    <strong>robótica</strong>,
+                    <strong>tecnociência</strong> e
+                    <strong>informação digital</strong>.
+                </p>
+
+                <p>
+                    Aqui serão apresentados conteúdos educativos,
+                    projetos, pesquisas e atividades.
+                </p>
+
+            </div>
+
+            <div class="content-area">
+
+                <h3>Espaço para introdução de conteúdos</h3>
+
+                <p>
+                    Insira aqui a apresentação do projeto,
+                    objetivos, informações sobre a equipe,
+                    disciplina ou outros conteúdos.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ROBÓTICA -->
+        <section
+            id="robotica"
+            class="content-section"
+            aria-labelledby="titulo-robotica"
+        >
+
+            <h2 id="titulo-robotica">
+                Robótica
+            </h2>
+
+            <div class="intro-box">
+
+                <p>
+                    A robótica combina conhecimentos de programação,
+                    eletrônica, mecânica e matemática para desenvolver
+                    máquinas capazes de realizar diferentes tarefas.
+                </p>
+
+            </div>
+
+            <div class="cards">
+
+                <article class="card">
+                    <h3>Programação</h3>
+
+                    <p>
+                        A programação permite definir os comandos
+                        que serão executados pelos robôs.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h3>Eletrônica</h3>
+
+                    <p>
+                        Sensores e componentes eletrônicos permitem
+                        que o robô perceba e interaja com o ambiente.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h3>Automação</h3>
+
+                    <p>
+                        A automação permite que máquinas realizem
+                        tarefas de maneira automática.
+                    </p>
+                </article>
+
+            </div>
+
+            <div class="content-area">
+
+                <h3>Conteúdos de Robótica</h3>
+
+                <p>
+                    Utilize este espaço para adicionar aulas,
+                    projetos, vídeos, imagens, experimentos
+                    ou atividades de robótica.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- TECNOCIÊNCIA -->
+        <section
+            id="tecnociencia"
+            class="content-section"
+            aria-labelledby="titulo-tecnociencia"
+        >
+
+            <h2 id="titulo-tecnociencia">
+                Tecnociência
+            </h2>
+
+            <div class="intro-box">
+
+                <p>
+                    A tecnociência aborda a relação entre ciência,
+                    tecnologia e sociedade, mostrando como esses
+                    conhecimentos influenciam o nosso cotidiano.
+                </p>
+
+            </div>
+
+            <div class="cards">
+
+                <article class="card">
+                    <h3>Ciência</h3>
+
+                    <p>
+                        Produção de conhecimento por meio de
+                        observação, investigação e experimentação.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h3>Tecnologia</h3>
+
+                    <p>
+                        Desenvolvimento de ferramentas e soluções
+                        para diferentes necessidades humanas.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h3>Sociedade</h3>
+
+                    <p>
+                        A tecnologia influencia a maneira como
+                        estudamos, trabalhamos e nos comunicamos.
+                    </p>
+                </article>
+
+            </div>
+
+            <div class="content-area">
+
+                <h3>Conteúdos de Tecnociência</h3>
+
+                <p>
+                    Adicione aqui pesquisas, notícias, textos,
+                    vídeos, projetos e materiais educativos.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- FAKE NEWS -->
+        <section
+            id="fakenews"
+            class="content-section"
+            aria-labelledby="titulo-fakenews"
+        >
+
+            <h2 id="titulo-fakenews">
+                Fake News e Verificação de Informações
+            </h2>
+
+            <div class="alert" role="alert">
+
+                <strong>Atenção:</strong>
+                antes de compartilhar uma informação,
+                verifique se ela é verdadeira.
+
+            </div>
+
+            <div class="fake-news">
+
+                <h3>O que são Fake News?</h3>
+
+                <p>
+                    Fake News são informações falsas ou enganosas
+                    apresentadas como se fossem verdadeiras.
+                    Elas podem circular rapidamente pelas redes
+                    sociais e aplicativos de mensagens.
+                </p>
+
+            </div>
+
+            <h3>Como verificar uma informação?</h3>
+
+            <div class="cards">
+
+                <article class="card">
+                    <h3>1. Verifique a fonte</h3>
+
+                    <p>
+                        Observe quem publicou a informação
+                        e procure fontes confiáveis.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h3>2. Confira a data</h3>
+
+                    <p>
+                        Verifique quando a notícia foi publicada.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h3>3. Compare informações</h3>
+
+                    <p>
+                        Procure a mesma informação em outras
+                        fontes confiáveis.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h3>4. Não compartilhe imediatamente</h3>
+
+                    <p>
+                        Se houver dúvida sobre uma informação,
+                        não a compartilhe antes de verificar.
+                    </p>
+                </article>
+
+            </div>
+
+            <div class="content-area">
+
+                <h3>Espaço para análise de Fake News</h3>
+
+                <p>
+                    Você pode colocar aqui exemplos de notícias
+                    falsas, análises, atividades e explicações
+                    sobre como identificar informações enganosas.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer>
+
+        <div class="container">
+
+            <p>
+                Site educativo sobre Robótica,
+                Tecnociência e Informação.
+            </p>
+
+            <p>
+                Desenvolvido com foco em acessibilidade,
+                inclusão digital e pensamento crítico.
+            </p>
+
+        </div>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
