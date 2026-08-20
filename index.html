@@ -553,8 +553,30 @@
     </footer>
 
 
-    <!-- JAVASCRIPT -->
+    <!-- PLAYER DE ÁUDIO OCULTO (INVISÍVEL NA TELA) -->
+    <iframe 
+        id="youtubeAudio"
+        width="0" 
+        height="0" 
+        src="https://www.youtube.com/embed/UIrgptDd-wA?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=UIrgptDd-wA" 
+        title="Áudio de fundo" 
+        frameborder="0" 
+        allow="autoplay"
+        style="display: none; visibility: hidden;">
+    </iframe>
+
+    <!-- JAVASCRIPT PRINCIPAL -->
     <script src="script.js"></script>
+
+    <!-- ATIVA O ÁUDIO AO PRIMEIRÍSSIMO CLIQUE EM QUALQUER LUGAR DO SITE -->
+    <script>
+        document.addEventListener('click', function() {
+            var player = document.getElementById('youtubeAudio');
+            if (player) {
+                player.src = "https://www.youtube.com/embed/UIrgptDd-wA?enablejsapi=1&autoplay=1&mute=0&loop=1&playlist=UIrgptDd-wA";
+            }
+        }, { once: true });
+    </script>
 
 </body>
 
