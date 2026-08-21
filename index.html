@@ -3,11 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta
         name="description"
@@ -21,49 +17,38 @@
 
 <body>
 
-    <!-- =====================================================
-         ACESSIBILIDADE
-    ====================================================== -->
-
+    <!-- ACESSIBILIDADE -->
     <a href="#conteudo" class="skip-link">
         Pular para o conteúdo principal
     </a>
 
 
-    <!-- =====================================================
-         CABEÇALHO
-    ====================================================== -->
-
+    <!-- CABEÇALHO -->
     <header>
 
-        <div class="container">
+        <div class="header-glow"></div>
 
-            <div class="header-content">
+        <div class="container header-content">
 
-                <span class="header-tag">
-                    PROJETO EDUCACIONAL
-                </span>
-
-                <h1>
-                    Robótica, Tecnociência e Informação
-                </h1>
-
-                <p>
-                    Um espaço educativo para aprender, explorar tecnologias
-                    e desenvolver o pensamento crítico.
-                </p>
-
+            <div class="badge">
+                TECNOLOGIA • CIÊNCIA • EDUCAÇÃO
             </div>
+
+            <h1>
+                Robótica, Tecnociência e Informação
+            </h1>
+
+            <p>
+                Um espaço educativo para aprender, explorar tecnologias
+                e desenvolver o pensamento crítico.
+            </p>
 
         </div>
 
     </header>
 
 
-    <!-- =====================================================
-         PAINEL DE ACESSIBILIDADE
-    ====================================================== -->
-
+    <!-- PAINEL DE ACESSIBILIDADE -->
     <section
         class="accessibility-panel"
         aria-label="Ferramentas de acessibilidade"
@@ -71,28 +56,21 @@
 
         <div class="container accessibility-container">
 
-            <strong class="accessibility-title">
-                ♿ Acessibilidade
-            </strong>
-
+            <strong>Acessibilidade</strong>
 
             <button
                 id="aumentarFonte"
                 type="button"
-                aria-label="Aumentar tamanho do texto"
             >
                 A+ Aumentar texto
             </button>
 
-
             <button
                 id="diminuirFonte"
                 type="button"
-                aria-label="Diminuir tamanho do texto"
             >
-                A− Diminuir texto
+                A- Diminuir texto
             </button>
-
 
             <button
                 id="espacamento"
@@ -102,7 +80,6 @@
                 ↕ Espaçamento
             </button>
 
-
             <button
                 id="altoContraste"
                 type="button"
@@ -111,27 +88,6 @@
                 ◐ Alto contraste
             </button>
 
-
-            <!-- LEITOR DE TEXTO -->
-
-            <button
-                id="lerTexto"
-                type="button"
-                aria-label="Ler o texto da seção atual em voz alta"
-            >
-                🔊 Ler texto
-            </button>
-
-
-            <button
-                id="pararLeitura"
-                type="button"
-                aria-label="Parar leitura em voz alta"
-            >
-                ⏹ Parar leitura
-            </button>
-
-
             <button
                 id="fonteNormal"
                 type="button"
@@ -139,15 +95,27 @@
                 ↺ Restaurar
             </button>
 
+            <button
+                id="lerTexto"
+                type="button"
+                aria-pressed="false"
+            >
+                🔊 Ler texto
+            </button>
+
+            <button
+                id="pararLeitura"
+                type="button"
+            >
+                ⏹ Parar leitura
+            </button>
+
         </div>
 
     </section>
 
 
-    <!-- =====================================================
-         MENU
-    ====================================================== -->
-
+    <!-- MENU -->
     <nav aria-label="Menu principal">
 
         <div class="container nav-container">
@@ -157,34 +125,31 @@
                 data-section="introducao"
                 type="button"
             >
-                🏠 Introdução
+                Introdução
             </button>
-
 
             <button
                 class="nav-button"
                 data-section="robotica"
                 type="button"
             >
-                🤖 Robótica
+                Robótica
             </button>
-
 
             <button
                 class="nav-button"
                 data-section="tecnociencia"
                 type="button"
             >
-                ⚛️ Tecnociência
+                Tecnociência
             </button>
-
 
             <button
                 class="nav-button"
                 data-section="fakenews"
                 type="button"
             >
-                📰 Fake News
+                Fake News
             </button>
 
         </div>
@@ -192,38 +157,24 @@
     </nav>
 
 
-    <!-- =====================================================
-         CONTEÚDO PRINCIPAL
-    ====================================================== -->
-
-    <main
-        id="conteudo"
-        class="container"
-    >
+    <!-- CONTEÚDO -->
+    <main id="conteudo" class="container">
 
 
-        <!-- =================================================
-             INTRODUÇÃO
-        ================================================== -->
-
+        <!-- INTRODUÇÃO -->
         <section
             id="introducao"
             class="content-section active"
             aria-labelledby="titulo-introducao"
         >
 
-            <div class="section-header">
-
-                <span class="section-number">
-                    01
-                </span>
-
-                <h2 id="titulo-introducao">
-                    Introdução
-                </h2>
-
+            <div class="section-label">
+                01 / INTRODUÇÃO
             </div>
 
+            <h2 id="titulo-introducao">
+                Introdução
+            </h2>
 
             <div class="intro-box">
 
@@ -275,28 +226,20 @@
         </section>
 
 
-        <!-- =================================================
-             ROBÓTICA
-        ================================================== -->
-
+        <!-- ROBÓTICA -->
         <section
             id="robotica"
             class="content-section"
             aria-labelledby="titulo-robotica"
         >
 
-            <div class="section-header">
-
-                <span class="section-number">
-                    02
-                </span>
-
-                <h2 id="titulo-robotica">
-                    Robótica
-                </h2>
-
+            <div class="section-label">
+                02 / TECNOLOGIA
             </div>
 
+            <h2 id="titulo-robotica">
+                Robótica
+            </h2>
 
             <div class="intro-box">
 
@@ -317,8 +260,8 @@
 
                 <article class="card">
 
-                    <div class="card-icon">
-                        ⚙️
+                    <div class="card-number">
+                        01
                     </div>
 
                     <h3>
@@ -335,8 +278,8 @@
 
                 <article class="card">
 
-                    <div class="card-icon">
-                        ⚡
+                    <div class="card-number">
+                        02
                     </div>
 
                     <h3>
@@ -354,8 +297,8 @@
 
                 <article class="card">
 
-                    <div class="card-icon">
-                        💻
+                    <div class="card-number">
+                        03
                     </div>
 
                     <h3>
@@ -389,27 +332,20 @@
         </section>
 
 
-        <!-- =================================================
-             TECNOCIÊNCIA
-        ================================================== -->
-
+        <!-- TECNOCIÊNCIA -->
         <section
             id="tecnociencia"
             class="content-section"
             aria-labelledby="titulo-tecnociencia"
         >
 
-            <div class="section-header">
-
-                <span class="section-number">
-                    03
-                </span>
-
-                <h2 id="titulo-tecnociencia">
-                    Tecnociência
-                </h2>
-
+            <div class="section-label">
+                03 / CIÊNCIA
             </div>
+
+            <h2 id="titulo-tecnociencia">
+                Tecnociência
+            </h2>
 
 
             <div class="intro-box">
@@ -435,8 +371,8 @@
 
                 <article class="card">
 
-                    <div class="card-icon">
-                        🔬
+                    <div class="card-number">
+                        01
                     </div>
 
                     <h3>
@@ -453,8 +389,8 @@
 
                 <article class="card">
 
-                    <div class="card-icon">
-                        🚀
+                    <div class="card-number">
+                        02
                     </div>
 
                     <h3>
@@ -471,8 +407,8 @@
 
                 <article class="card">
 
-                    <div class="card-icon">
-                        🌎
+                    <div class="card-number">
+                        03
                     </div>
 
                     <h3>
@@ -505,38 +441,30 @@
         </section>
 
 
-        <!-- =================================================
-             FAKE NEWS
-        ================================================== -->
-
+        <!-- FAKE NEWS -->
         <section
             id="fakenews"
             class="content-section"
             aria-labelledby="titulo-fakenews"
         >
 
-            <div class="section-header">
-
-                <span class="section-number">
-                    04
-                </span>
-
-                <h2 id="titulo-fakenews">
-                    Fake News e Verificação de Informações
-                </h2>
-
+            <div class="section-label">
+                04 / PENSAMENTO CRÍTICO
             </div>
 
+            <h2 id="titulo-fakenews">
+                Fake News e Verificação de Informações
+            </h2>
 
-            <div
-                class="alert"
-                role="alert"
-            >
 
-                <strong>⚠️ Atenção:</strong>
+            <div class="alert" role="alert">
 
-                antes de compartilhar uma informação,
-                verifique se ela é verdadeira.
+                <strong>ATENÇÃO</strong>
+
+                <span>
+                    Antes de compartilhar uma informação,
+                    verifique se ela é verdadeira.
+                </span>
 
             </div>
 
@@ -576,12 +504,12 @@
 
                 <article class="card">
 
-                    <div class="card-icon">
-                        🔎
+                    <div class="card-number">
+                        01
                     </div>
 
                     <h3>
-                        1. Cheque a fonte
+                        Cheque a fonte
                     </h3>
 
                     <p>
@@ -594,12 +522,12 @@
 
                 <article class="card">
 
-                    <div class="card-icon">
-                        📅
+                    <div class="card-number">
+                        02
                     </div>
 
                     <h3>
-                        2. Avalie a data
+                        Avalie a data
                     </h3>
 
                     <p>
@@ -612,12 +540,12 @@
 
                 <article class="card">
 
-                    <div class="card-icon">
-                        🌐
+                    <div class="card-number">
+                        03
                     </div>
 
                     <h3>
-                        3. Compare fontes
+                        Compare fontes
                     </h3>
 
                     <p>
@@ -630,17 +558,17 @@
 
                 <article class="card">
 
-                    <div class="card-icon">
-                        🧠
+                    <div class="card-number">
+                        04
                     </div>
 
                     <h3>
-                        4. Pense antes
+                        Pense antes
                     </h3>
 
                     <p>
-                        Se você ficou na dúvida sobre a veracidade, não compartilhe
-                        com amigos ou redes sociais.
+                        Se você ficou na dúvida sobre a veracidade,
+                        não compartilhe com amigos ou redes sociais.
                     </p>
 
                 </article>
@@ -666,60 +594,33 @@
     </main>
 
 
-    <!-- =====================================================
-         RODAPÉ
-    ====================================================== -->
-
+    <!-- RODAPÉ -->
     <footer>
 
         <div class="container">
 
-            <div class="footer-grid">
-
-                <div>
-
-                    <h3>
-                        Robótica, Tecnociência e Informação
-                    </h3>
-
-                    <p>
-                        Site educativo desenvolvido com foco em
-                        acessibilidade, inclusão digital e pensamento crítico.
-                    </p>
-
-                </div>
-
-
-                <div>
-
-                    <h3>
-                        Equipe
-                    </h3>
-
-                    <ul class="equipe">
-
-                        <li>
-                            Vinicius Lima
-                        </li>
-
-                        <li>
-                            Pedro Emanuel
-                        </li>
-
-                        <li>
-                            Gabriel Maricato
-                        </li>
-
-                    </ul>
-
-                </div>
-
-            </div>
-
             <div class="footer-line"></div>
 
-            <p class="copyright">
-                Projeto educacional • Física • Robótica • Tecnociência • Informação
+            <h3>
+                Equipe
+            </h3>
+
+            <ul class="equipe">
+
+                <li>Vinicius Lima</li>
+                <li>Pedro Emanuel</li>
+                <li>Gabriel Maricato</li>
+
+            </ul>
+
+            <p>
+                Site educativo sobre Robótica,
+                Tecnociência e Informação.
+            </p>
+
+            <p>
+                Desenvolvido com foco em acessibilidade,
+                inclusão digital e pensamento crítico.
             </p>
 
         </div>
@@ -727,53 +628,20 @@
     </footer>
 
 
-    <!-- =====================================================
-         MÚSICA DE FUNDO
-    ====================================================== -->
-
+    <!-- MÚSICA DE FUNDO -->
     <iframe
         id="youtubeAudio"
         width="0"
         height="0"
         src="https://www.youtube.com/embed/UIrgptDd-wA?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=UIrgptDd-wA"
-        title="Música de fundo"
+        title="Áudio de fundo"
         frameborder="0"
         allow="autoplay"
         style="display:none;visibility:hidden;"
-    >
-    </iframe>
+    ></iframe>
 
-
-    <!-- =====================================================
-         JAVASCRIPT
-    ====================================================== -->
 
     <script src="script.js"></script>
-
-
-    <!-- =====================================================
-         PRIMEIRO CLIQUE ATIVA A MÚSICA
-    ====================================================== -->
-
-    <script>
-
-        document.addEventListener(
-            "click",
-            function () {
-
-                const player =
-                    document.getElementById("youtubeAudio");
-
-                if (!player) return;
-
-                player.src =
-                    "https://www.youtube.com/embed/UIrgptDd-wA?enablejsapi=1&autoplay=1&mute=0&loop=1&playlist=UIrgptDd-wA";
-
-            },
-            { once: true }
-        );
-
-    </script>
 
 </body>
 

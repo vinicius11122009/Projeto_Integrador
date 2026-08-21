@@ -16,62 +16,35 @@ botoesMenu.forEach((botao) => {
         const idSecao =
             botao.dataset.section;
 
-
-        /* Para qualquer leitura que esteja acontecendo */
-
-        pararLeitura();
-
-
-        /* Remove seção ativa */
-
         secoes.forEach((secao) => {
-
             secao.classList.remove("active");
-
         });
-
-
-        /* Remove botão ativo */
 
         botoesMenu.forEach((btn) => {
-
             btn.classList.remove("active");
-
         });
 
-
-        /* Ativa botão */
-
         botao.classList.add("active");
-
-
-        /* Mostra seção */
 
         const secaoSelecionada =
             document.getElementById(idSecao);
 
+        if (secaoSelecionada) {
 
-        if (!secaoSelecionada) return;
+            secaoSelecionada.classList.add("active");
 
+            const titulo =
+                secaoSelecionada.querySelector("h2");
 
-        secaoSelecionada.classList.add("active");
+            if (titulo) {
 
+                titulo.setAttribute(
+                    "tabindex",
+                    "-1"
+                );
 
-        /* Coloca foco no título */
-
-        const titulo =
-            secaoSelecionada.querySelector("h2");
-
-
-        if (titulo) {
-
-            titulo.setAttribute(
-                "tabindex",
-                "-1"
-            );
-
-            titulo.focus();
-
+                titulo.focus();
+            }
         }
 
     });
@@ -85,14 +58,11 @@ botoesMenu.forEach((botao) => {
 
 let tamanhoFonte = 18;
 
-
 const aumentarFonte =
     document.getElementById("aumentarFonte");
 
-
 const diminuirFonte =
     document.getElementById("diminuirFonte");
-
 
 const fonteNormal =
     document.getElementById("fonteNormal");
@@ -104,90 +74,71 @@ function atualizarFonte() {
         "--tamanho-fonte",
         `${tamanhoFonte}px`
     );
-
 }
 
-
-/* AUMENTAR */
 
 if (aumentarFonte) {
 
-    aumentarFonte.addEventListener(
-        "click",
-        () => {
+    aumentarFonte.addEventListener("click", () => {
 
-            if (tamanhoFonte < 28) {
+        if (tamanhoFonte < 30) {
 
-                tamanhoFonte += 2;
+            tamanhoFonte += 2;
 
-                atualizarFonte();
-
-            }
-
+            atualizarFonte();
         }
-    );
+
+    });
 
 }
 
 
-/* DIMINUIR */
-
 if (diminuirFonte) {
 
-    diminuirFonte.addEventListener(
-        "click",
-        () => {
+    diminuirFonte.addEventListener("click", () => {
 
-            if (tamanhoFonte > 14) {
+        if (tamanhoFonte > 12) {
 
-                tamanhoFonte -= 2;
+            tamanhoFonte -= 2;
 
-                atualizarFonte();
-
-            }
-
+            atualizarFonte();
         }
-    );
+
+    });
 
 }
 
 
 /* =====================================================
-   ESPAÇAMENTO ENTRE LINHAS
+   ESPAÇAMENTO
 ===================================================== */
 
 const botaoEspacamento =
     document.getElementById("espacamento");
-
 
 let espacamentoAtivo = false;
 
 
 if (botaoEspacamento) {
 
-    botaoEspacamento.addEventListener(
-        "click",
-        () => {
+    botaoEspacamento.addEventListener("click", () => {
 
-            espacamentoAtivo =
-                !espacamentoAtivo;
+        espacamentoAtivo =
+            !espacamentoAtivo;
 
+        document.documentElement.style.setProperty(
+            "--espacamento-linha",
+            espacamentoAtivo
+                ? "2.1"
+                : "1.6"
+        );
 
-            document.documentElement.style.setProperty(
-                "--espacamento-linha",
-                espacamentoAtivo
-                    ? "2.1"
-                    : "1.6"
-            );
+        botaoEspacamento.setAttribute(
+            "aria-pressed",
+            espacamentoAtivo
+        );
 
-
-            botaoEspacamento.setAttribute(
-                "aria-pressed",
-                espacamentoAtivo
-            );
-
-        }
-    );
+    });
 
 }
 
@@ -202,48 +153,97 @@ const botaoContraste =
 
 if (botaoContraste) {
 
-    botaoContraste.addEventListener(
-        "click",
-        () => {
+    botaoContraste.addEventListener("click", () => {
 
-            const ativo =
-                document.body.classList.toggle(
-                    "high-contrast"
-                );
+        const ativo =
+            document.body.classList.toggle(
+                "high-contrast"
+            );
+
+        botaoContraste.setAttribute(
+            "aria-pressed",
+            ativo
+        );
+
+    });
+
+}
 
 
-            botaoContraste.setAttribute(
+/* =====================================================
+   RESTAURAR
+===================================================== */
+
+if (fonteNormal) {
+
+    fonteNormal.addEventListener("click", () => {
+
+        tamanhoFonte = 18;
+
+        atualizarFonte();
+
+
+        espacamentoAtivo = false;
+
+        document.documentElement.style.setProperty(
+            "--espacamento-linha",
+            "1.6"
+        );
+
+
+        if (botaoEspacamento) {
+
+            botaoEspacamento.setAttribute(
                 "aria-pressed",
-                ativo
+                "false"
             );
 
         }
-    );
+
+
+        document.body.classList.remove(
+            "high-contrast"
+        );
+
+
+        if (botaoContraste) {
+
+            botaoContraste.setAttribute(
+                "aria-pressed",
+                "false"
+            );
+
+        }
+
+    });
 
 }
+
+
+/* =====================================================
+   PLAYER DO YOUTUBE
+===================================================== */
+
+const player =
+    document.getElementById("youtubeAudio");
+
+
+let playerPronto = false;
+
+let musicaPausadaPelaLeitura = false;
 
 
 /* =====================================================
    CONTROLE DA MÚSICA
 ===================================================== */
 
-const playerMusica =
-    document.getElementById("youtubeAudio");
+function enviarComandoYoutube(comando) {
 
+    if (!player || !player.contentWindow) {
+        return;
+    }
 
-/*
-    Envia comandos para o YouTube.
-
-    pauseVideo = pausa
-    playVideo  = continua
-*/
-
-function controlarMusica(comando) {
-
-    if (!playerMusica) return;
-
-
-    playerMusica.contentWindow.postMessage(
+    player.contentWindow.postMessage(
         JSON.stringify({
             event: "command",
             func: comando,
@@ -251,48 +251,103 @@ function controlarMusica(comando) {
         }),
         "*"
     );
+}
 
+
+function pausarMusica() {
+
+    enviarComandoYoutube("pauseVideo");
+
+    musicaPausadaPelaLeitura = true;
+}
+
+
+function voltarMusica() {
+
+    if (musicaPausadaPelaLeitura) {
+
+        enviarComandoYoutube("playVideo");
+
+        musicaPausadaPelaLeitura = false;
+    }
 }
 
 
 /* =====================================================
-   LEITOR DE TEXTO
+   ATIVA PLAYER DO YOUTUBE
 ===================================================== */
 
-const botaoLerTexto =
+window.addEventListener("message", (event) => {
+
+    if (
+        event.data &&
+        typeof event.data === "string" &&
+        event.data.includes("onReady")
+    ) {
+
+        playerPronto = true;
+    }
+
+});
+
+
+/* =====================================================
+   PRIMEIRO CLIQUE
+   ATIVA A MÚSICA COM SOM
+===================================================== */
+
+let musicaAtivada = false;
+
+
+document.addEventListener(
+    "click",
+    () => {
+
+        if (!player || musicaAtivada) {
+            return;
+        }
+
+        musicaAtivada = true;
+
+        player.src =
+            "https://www.youtube.com/embed/UIrgptDd-wA?enablejsapi=1&autoplay=1&mute=0&loop=1&playlist=UIrgptDd-wA";
+
+    },
+    {
+        once: true
+    }
+);
+
+
+/* =====================================================
+   LEITURA POR VOZ
+===================================================== */
+
+const lerTexto =
     document.getElementById("lerTexto");
 
-
-const botaoPararLeitura =
+const pararLeitura =
     document.getElementById("pararLeitura");
 
 
-let lendoTexto = false;
+let lendo = false;
 
 
 /*
-    Obtém somente o texto da seção que está aberta.
+    Pega somente o conteúdo da seção que está visível.
 */
 
-function obterTextoSecaoAtiva() {
+function obterTextoParaLeitura() {
 
     const secaoAtiva =
         document.querySelector(
             ".content-section.active"
         );
 
-
     if (!secaoAtiva) {
-
         return "";
-
     }
 
-
-    /*
-        Clona a seção para evitar
-        pegar elementos desnecessários.
-    */
 
     const clone =
         secaoAtiva.cloneNode(true);
@@ -300,214 +355,124 @@ function obterTextoSecaoAtiva() {
 
     /*
         Remove elementos que não precisam
-        ser lidos.
+        ser lidos pelo leitor.
     */
 
-    clone
-        .querySelectorAll(
-            "button, script, iframe"
-        )
-        .forEach((elemento) => {
-
-            elemento.remove();
-
-        });
+    clone.querySelectorAll(
+        "button, iframe"
+    ).forEach((elemento) => {
+        elemento.remove();
+    });
 
 
     return clone.innerText
         .replace(/\s+/g, " ")
         .trim();
-
-}
-
-
-/*
-    Começa a leitura.
-*/
-
-function lerTexto() {
-
-    /*
-        Verifica se o navegador
-        possui Speech Synthesis.
-    */
-
-    if (!("speechSynthesis" in window)) {
-
-        alert(
-            "Seu navegador não possui suporte à leitura de texto por voz."
-        );
-
-        return;
-
-    }
-
-
-    const texto =
-        obterTextoSecaoAtiva();
-
-
-    if (!texto) return;
-
-
-    /*
-        Cancela qualquer leitura anterior.
-    */
-
-    window.speechSynthesis.cancel();
-
-
-    /*
-        IMPORTANTE:
-
-        Ao iniciar a leitura,
-        a música é pausada.
-    */
-
-    controlarMusica("pauseVideo");
-
-
-    const fala =
-        new SpeechSynthesisUtterance(
-            texto
-        );
-
-
-    /*
-        Configura a voz.
-    */
-
-    fala.lang = "pt-BR";
-
-    fala.rate = 0.95;
-
-    fala.pitch = 1;
-
-    fala.volume = 1;
-
-
-    /*
-        Tenta encontrar uma voz brasileira.
-    */
-
-    const vozes =
-        window.speechSynthesis.getVoices();
-
-
-    const vozBrasileira =
-        vozes.find(
-            (voz) =>
-                voz.lang === "pt-BR"
-        );
-
-
-    if (vozBrasileira) {
-
-        fala.voice =
-            vozBrasileira;
-
-    }
-
-
-    /*
-        Indica que a leitura começou.
-    */
-
-    lendoTexto = true;
-
-
-    document.body.classList.add(
-        "reading-active"
-    );
-
-
-    botaoLerTexto.setAttribute(
-        "aria-pressed",
-        "true"
-    );
-
-
-    /*
-        Quando terminar automaticamente,
-        a música volta.
-    */
-
-    fala.onend = () => {
-
-        lendoTexto = false;
-
-
-        document.body.classList.remove(
-            "reading-active"
-        );
-
-
-        botaoLerTexto.setAttribute(
-            "aria-pressed",
-            "false"
-        );
-
-
-        controlarMusica(
-            "playVideo"
-        );
-
-    };
-
-
-    /*
-        Caso aconteça algum erro,
-        também libera o estado.
-    */
-
-    fala.onerror = () => {
-
-        lendoTexto = false;
-
-
-        document.body.classList.remove(
-            "reading-active"
-        );
-
-
-        botaoLerTexto.setAttribute(
-            "aria-pressed",
-            "false"
-        );
-
-
-        controlarMusica(
-            "playVideo"
-        );
-
-    };
-
-
-    /*
-        Inicia a fala.
-    */
-
-    window.speechSynthesis.speak(
-        fala
-    );
-
 }
 
 
 /* =====================================================
-   PARAR LEITURA
+   INICIAR LEITURA
 ===================================================== */
 
-function pararLeitura() {
+function iniciarLeitura() {
 
-    if ("speechSynthesis" in window) {
+    if (!("speechSynthesis" in window)) {
 
-        window.speechSynthesis.cancel();
+        alert(
+            "Seu navegador não possui suporte à leitura por voz."
+        );
 
+        return;
     }
 
 
-    lendoTexto = false;
+    speechSynthesis.cancel();
+
+
+    const texto =
+        obterTextoParaLeitura();
+
+
+    if (!texto) {
+        return;
+    }
+
+
+    /*
+        Primeiro para a música.
+    */
+
+    pausarMusica();
+
+
+    const fala =
+        new SpeechSynthesisUtterance(texto);
+
+
+    fala.lang =
+        "pt-BR";
+
+
+    fala.rate =
+        0.95;
+
+
+    fala.pitch =
+        1;
+
+
+    fala.volume =
+        1;
+
+
+    fala.onstart = () => {
+
+        lendo = true;
+
+        document.body.classList.add(
+            "reading-active"
+        );
+
+        if (lerTexto) {
+
+            lerTexto.setAttribute(
+                "aria-pressed",
+                "true"
+            );
+
+        }
+
+    };
+
+
+    fala.onend = () => {
+
+        finalizarLeitura();
+
+    };
+
+
+    fala.onerror = () => {
+
+        finalizarLeitura();
+
+    };
+
+
+    speechSynthesis.speak(fala);
+}
+
+
+/* =====================================================
+   FINALIZAR LEITURA
+===================================================== */
+
+function finalizarLeitura() {
+
+    speechSynthesis.cancel();
+
+    lendo = false;
 
 
     document.body.classList.remove(
@@ -515,9 +480,9 @@ function pararLeitura() {
     );
 
 
-    if (botaoLerTexto) {
+    if (lerTexto) {
 
-        botaoLerTexto.setAttribute(
+        lerTexto.setAttribute(
             "aria-pressed",
             "false"
         );
@@ -526,28 +491,35 @@ function pararLeitura() {
 
 
     /*
-        IMPORTANTE:
-
-        Ao clicar em "Parar leitura",
+        Quando a leitura termina ou é parada,
         a música volta.
     */
 
-    controlarMusica(
-        "playVideo"
-    );
-
+    voltarMusica();
 }
 
 
 /* =====================================================
-   BOTÃO LER TEXTO
+   BOTÃO LER
 ===================================================== */
 
-if (botaoLerTexto) {
+if (lerTexto) {
 
-    botaoLerTexto.addEventListener(
+    lerTexto.addEventListener(
         "click",
-        lerTexto
+        () => {
+
+            if (lendo) {
+
+                finalizarLeitura();
+
+            } else {
+
+                iniciarLeitura();
+
+            }
+
+        }
     );
 
 }
@@ -557,95 +529,40 @@ if (botaoLerTexto) {
    BOTÃO PARAR LEITURA
 ===================================================== */
 
-if (botaoPararLeitura) {
+if (pararLeitura) {
 
-    botaoPararLeitura.addEventListener(
+    pararLeitura.addEventListener(
         "click",
-        pararLeitura
+        () => {
+
+            finalizarLeitura();
+
+        }
     );
 
 }
 
 
 /* =====================================================
-   CARREGAMENTO DAS VOZES
+   SE MUDAR DE SEÇÃO DURANTE A LEITURA
 ===================================================== */
 
-/*
-    Alguns navegadores carregam as vozes
-    de maneira assíncrona.
+botoesMenu.forEach((botao) => {
 
-    Esta chamada força o carregamento.
-*/
-
-if ("speechSynthesis" in window) {
-
-    window.speechSynthesis
-        .getVoices();
-
-}
-
-
-/* =====================================================
-   RESTAURAR ACESSIBILIDADE
-===================================================== */
-
-if (fonteNormal) {
-
-    fonteNormal.addEventListener(
+    botao.addEventListener(
         "click",
         () => {
 
-            /* Fonte */
+            if (lendo) {
 
-            tamanhoFonte = 18;
-
-            document.documentElement.style.setProperty(
-                "--tamanho-fonte",
-                "18px"
-            );
-
-
-            /* Espaçamento */
-
-            espacamentoAtivo = false;
-
-            document.documentElement.style.setProperty(
-                "--espacamento-linha",
-                "1.6"
-            );
-
-
-            if (botaoEspacamento) {
-
-                botaoEspacamento.setAttribute(
-                    "aria-pressed",
-                    "false"
-                );
-
-            }
-
-
-            /* Contraste */
-
-            document.body.classList.remove(
-                "high-contrast"
-            );
-
-
-            if (botaoContraste) {
-
-                botaoContraste.setAttribute(
-                    "aria-pressed",
-                    "false"
-                );
+                finalizarLeitura();
 
             }
 
         }
     );
 
-}
+});
 
 
 /* =====================================================
@@ -656,102 +573,59 @@ document.addEventListener(
     "keydown",
     (event) => {
 
+        if (!event.altKey) {
+            return;
+        }
 
-        /* Alt + 1 */
 
-        if (
-            event.altKey &&
-            event.key === "1"
-        ) {
+        if (event.key === "1") {
 
-            const botao =
-                document.querySelector(
+            event.preventDefault();
+
+            document
+                .querySelector(
                     '[data-section="introducao"]'
-                );
-
-
-            if (botao) {
-
-                botao.click();
-
-            }
+                )
+                ?.click();
 
         }
 
 
-        /* Alt + 2 */
+        if (event.key === "2") {
 
-        if (
-            event.altKey &&
-            event.key === "2"
-        ) {
+            event.preventDefault();
 
-            const botao =
-                document.querySelector(
+            document
+                .querySelector(
                     '[data-section="robotica"]'
-                );
-
-
-            if (botao) {
-
-                botao.click();
-
-            }
+                )
+                ?.click();
 
         }
 
 
-        /* Alt + 3 */
+        if (event.key === "3") {
 
-        if (
-            event.altKey &&
-            event.key === "3"
-        ) {
+            event.preventDefault();
 
-            const botao =
-                document.querySelector(
+            document
+                .querySelector(
                     '[data-section="tecnociencia"]'
-                );
-
-
-            if (botao) {
-
-                botao.click();
-
-            }
+                )
+                ?.click();
 
         }
 
 
-        /* Alt + 4 */
+        if (event.key === "4") {
 
-        if (
-            event.altKey &&
-            event.key === "4"
-        ) {
+            event.preventDefault();
 
-            const botao =
-                document.querySelector(
+            document
+                .querySelector(
                     '[data-section="fakenews"]'
-                );
-
-
-            if (botao) {
-
-                botao.click();
-
-            }
-
-        }
-
-
-        /*
-            ESC também para a leitura.
-        */
-
-        if (event.key === "Escape") {
-
-            pararLeitura();
+                )
+                ?.click();
 
         }
 
