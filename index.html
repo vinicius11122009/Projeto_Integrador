@@ -10,6 +10,8 @@
         content="Site educativo sobre Física, robótica, tecnociência e combate às fake news."
     >
 
+    <meta name="theme-color" content="#050816">
+
     <title>Robótica, Tecnociência e Informação</title>
 
     <link rel="stylesheet" href="style.css">
@@ -17,26 +19,81 @@
 
 <body>
 
-    <!-- Acessibilidade: pular para o conteúdo -->
+    <!-- FUNDO TECNOLÓGICO -->
+    <div class="background-grid" aria-hidden="true"></div>
+
+    <div class="particles" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+
+    <!-- ACESSIBILIDADE -->
     <a href="#conteudo" class="skip-link">
         Pular para o conteúdo principal
     </a>
 
 
     <!-- CABEÇALHO -->
-    <header>
-        <div class="container">
+    <header class="hero">
+
+        <div class="hero-glow"></div>
+
+        <div class="container hero-content">
+
+            <div class="status-badge">
+                <span class="status-dot"></span>
+                SISTEMA EDUCACIONAL ONLINE
+            </div>
+
+            <p class="hero-code">
+                &lt;TECNOLOGIA / FÍSICA / INOVAÇÃO&gt;
+            </p>
 
             <h1>
-                Robótica, Tecnociência e Informação
+                Robótica,
+                <span>Tecnociência</span>
+                e Informação
             </h1>
 
-            <p>
+            <p class="hero-description">
                 Um espaço educativo para aprender, explorar tecnologias
                 e desenvolver o pensamento crítico.
             </p>
 
+            <div class="hero-stats">
+
+                <div class="stat">
+                    <strong>04</strong>
+                    <span>Áreas</span>
+                </div>
+
+                <div class="stat">
+                    <strong>∞</strong>
+                    <span>Conhecimento</span>
+                </div>
+
+                <div class="stat">
+                    <strong>01</strong>
+                    <span>Missão</span>
+                </div>
+
+            </div>
+
         </div>
+
+        <div class="hero-line" aria-hidden="true"></div>
+
     </header>
 
 
@@ -48,46 +105,53 @@
 
         <div class="container accessibility-container">
 
-            <strong>Acessibilidade:</strong>
+            <div class="accessibility-title">
+                <span>◉</span>
+                <strong>Acessibilidade</strong>
+            </div>
 
-            <button
-                id="aumentarFonte"
-                type="button"
-                aria-label="Aumentar tamanho do texto"
-            >
-                A+ Aumentar texto
-            </button>
+            <div class="accessibility-controls">
 
-            <button
-                id="diminuirFonte"
-                type="button"
-                aria-label="Diminuir tamanho do texto"
-            >
-                A- Diminuir texto
-            </button>
+                <button
+                    id="aumentarFonte"
+                    type="button"
+                    aria-label="Aumentar tamanho do texto"
+                >
+                    A+ <span>Aumentar texto</span>
+                </button>
 
-            <button
-                id="espacamento"
-                type="button"
-                aria-pressed="false"
-            >
-                ↕ Espaçamento
-            </button>
+                <button
+                    id="diminuirFonte"
+                    type="button"
+                    aria-label="Diminuir tamanho do texto"
+                >
+                    A- <span>Diminuir texto</span>
+                </button>
 
-            <button
-                id="altoContraste"
-                type="button"
-                aria-pressed="false"
-            >
-                ◐ Alto contraste
-            </button>
+                <button
+                    id="espacamento"
+                    type="button"
+                    aria-pressed="false"
+                >
+                    ↕ <span>Espaçamento</span>
+                </button>
 
-            <button
-                id="fonteNormal"
-                type="button"
-            >
-                ↺ Restaurar
-            </button>
+                <button
+                    id="altoContraste"
+                    type="button"
+                    aria-pressed="false"
+                >
+                    ◐ <span>Alto contraste</span>
+                </button>
+
+                <button
+                    id="fonteNormal"
+                    type="button"
+                >
+                    ↺ <span>Restaurar</span>
+                </button>
+
+            </div>
 
         </div>
 
@@ -95,7 +159,10 @@
 
 
     <!-- MENU -->
-    <nav aria-label="Menu principal">
+    <nav
+        class="main-navigation"
+        aria-label="Menu principal"
+    >
 
         <div class="container nav-container">
 
@@ -104,7 +171,8 @@
                 data-section="introducao"
                 type="button"
             >
-                Introdução
+                <span class="nav-number">01</span>
+                <span>Introdução</span>
             </button>
 
             <button
@@ -112,7 +180,8 @@
                 data-section="robotica"
                 type="button"
             >
-                Robótica
+                <span class="nav-number">02</span>
+                <span>Robótica</span>
             </button>
 
             <button
@@ -120,7 +189,8 @@
                 data-section="tecnociencia"
                 type="button"
             >
-                Tecnociência
+                <span class="nav-number">03</span>
+                <span>Tecnociência</span>
             </button>
 
             <button
@@ -128,7 +198,8 @@
                 data-section="fakenews"
                 type="button"
             >
-                Fake News
+                <span class="nav-number">04</span>
+                <span>Fake News</span>
             </button>
 
         </div>
@@ -147,28 +218,51 @@
             aria-labelledby="titulo-introducao"
         >
 
-            <h2 id="titulo-introducao">
-                Introdução
-            </h2>
+            <div class="section-header">
 
-            <div class="intro-box">
+                <div class="section-tag">
+                    MÓDULO 01
+                </div>
 
-                <p>
-                    Bem-vindo ao nosso espaço de aprendizagem sobre
-                    <strong>robótica</strong>,
-                    <strong>tecnociência</strong> e
-                    <strong>informação digital</strong>.
-                </p>
+                <h2 id="titulo-introducao">
+                    Introdução
+                </h2>
 
-                <p>
-                    Aqui serão apresentados conteúdos educativos,
-                    projetos, pesquisas e atividades.
+                <p class="section-subtitle">
+                    Conhecimento, tecnologia e pensamento crítico.
                 </p>
 
             </div>
 
 
+            <div class="intro-box futuristic-box">
+
+                <div class="box-icon">
+                    ⚡
+                </div>
+
+                <div>
+                    <p>
+                        Bem-vindo ao nosso espaço de aprendizagem sobre
+                        <strong>robótica</strong>,
+                        <strong>tecnociência</strong> e
+                        <strong>informação digital</strong>.
+                    </p>
+
+                    <p>
+                        Aqui serão apresentados conteúdos educativos,
+                        projetos, pesquisas e atividades.
+                    </p>
+                </div>
+
+            </div>
+
+
             <div class="content-area">
+
+                <div class="content-label">
+                    // APRESENTAÇÃO DO PROJETO
+                </div>
 
                 <h3>
                     Apresentação do Projeto
@@ -208,11 +302,32 @@
             aria-labelledby="titulo-robotica"
         >
 
-            <h2 id="titulo-robotica">
-                Robótica
-            </h2>
+            <div class="section-header">
 
-            <div class="intro-box">
+                <div class="section-tag">
+                    MÓDULO 02
+                </div>
+
+                <h2 id="titulo-robotica">
+                    Robótica
+                </h2>
+
+                <p class="section-subtitle">
+                    Engenharia, eletrônica e programação trabalhando juntas.
+                </p>
+
+            </div>
+
+
+            <div class="intro-box futuristic-box">
+
+                <div class="robot-display" aria-hidden="true">
+                    <div class="robot-head">
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="robot-body"></div>
+                </div>
 
                 <p>
                     A <strong>robótica</strong> é o campo da ciência e da tecnologia
@@ -227,13 +342,20 @@
             </div>
 
 
-            <!-- CARDS DE ROBÓTICA -->
             <div class="cards">
 
                 <article class="card">
 
+                    <div class="card-number">
+                        01
+                    </div>
+
+                    <div class="card-icon">
+                        ⚙
+                    </div>
+
                     <h3>
-                        <strong>Mecânica</strong>
+                        Mecânica
                     </h3>
 
                     <p>
@@ -241,13 +363,23 @@
                         chassis e atuadores que permitem a movimentação.
                     </p>
 
+                    <div class="card-line"></div>
+
                 </article>
 
 
                 <article class="card">
 
+                    <div class="card-number">
+                        02
+                    </div>
+
+                    <div class="card-icon">
+                        ◉
+                    </div>
+
                     <h3>
-                        <strong>Eletrônica</strong>
+                        Eletrônica
                     </h3>
 
                     <p>
@@ -256,13 +388,23 @@
                         ambiente, como distância, temperatura ou luz.
                     </p>
 
+                    <div class="card-line"></div>
+
                 </article>
 
 
                 <article class="card">
 
+                    <div class="card-number">
+                        03
+                    </div>
+
+                    <div class="card-icon">
+                        &lt;/&gt;
+                    </div>
+
                     <h3>
-                        <strong>Programação</strong>
+                        Programação
                     </h3>
 
                     <p>
@@ -270,12 +412,18 @@
                         deve processar os dados dos sensores e reagir a cada situação.
                     </p>
 
+                    <div class="card-line"></div>
+
                 </article>
 
             </div>
 
 
             <div class="content-area">
+
+                <div class="content-label">
+                    // ÁREA DE PROJETOS
+                </div>
 
                 <h3>
                     Conteúdos de Robótica
@@ -286,6 +434,15 @@
                     projetos, vídeos, imagens, experimentos
                     ou atividades de robótica.
                 </p>
+
+                <div class="terminal">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                    <span class="terminal-text">
+                        sistema.projetos_robótica();
+                    </span>
+                </div>
 
             </div>
 
@@ -299,12 +456,30 @@
             aria-labelledby="titulo-tecnociencia"
         >
 
-            <h2 id="titulo-tecnociencia">
-                Tecnociência
-            </h2>
+            <div class="section-header">
+
+                <div class="section-tag">
+                    MÓDULO 03
+                </div>
+
+                <h2 id="titulo-tecnociencia">
+                    Tecnociência
+                </h2>
+
+                <p class="section-subtitle">
+                    Ciência e tecnologia transformando o mundo.
+                </p>
+
+            </div>
 
 
-            <div class="intro-box">
+            <div class="intro-box futuristic-box">
+
+                <div class="science-orbit" aria-hidden="true">
+                    <div class="orbit orbit-1"></div>
+                    <div class="orbit orbit-2"></div>
+                    <div class="orbit-core">⚛</div>
+                </div>
 
                 <p>
                     A <strong>Física</strong> e a <strong>tecnociência</strong>
@@ -323,10 +498,17 @@
             </div>
 
 
-            <!-- CARDS DE TECNOCIÊNCIA -->
             <div class="cards">
 
-                <article class="card">
+                <article class="card science-card">
+
+                    <div class="card-number">
+                        01
+                    </div>
+
+                    <div class="card-icon">
+                        ⚛
+                    </div>
 
                     <h3>
                         Ciência
@@ -337,10 +519,20 @@
                         observação, investigação e experimentação.
                     </p>
 
+                    <div class="card-line"></div>
+
                 </article>
 
 
-                <article class="card">
+                <article class="card science-card">
+
+                    <div class="card-number">
+                        02
+                    </div>
+
+                    <div class="card-icon">
+                        ◈
+                    </div>
 
                     <h3>
                         Tecnologia
@@ -351,10 +543,20 @@
                         para diferentes necessidades humanas.
                     </p>
 
+                    <div class="card-line"></div>
+
                 </article>
 
 
-                <article class="card">
+                <article class="card science-card">
+
+                    <div class="card-number">
+                        03
+                    </div>
+
+                    <div class="card-icon">
+                        ◎
+                    </div>
 
                     <h3>
                         Sociedade
@@ -365,12 +567,18 @@
                         estudamos, trabalhamos e nos comunicamos.
                     </p>
 
+                    <div class="card-line"></div>
+
                 </article>
 
             </div>
 
 
             <div class="content-area">
+
+                <div class="content-label">
+                    // CENTRAL DE TECNOCIÊNCIA
+                </div>
 
                 <h3>
                     Conteúdos de Tecnociência
@@ -393,22 +601,41 @@
             aria-labelledby="titulo-fakenews"
         >
 
-            <h2 id="titulo-fakenews">
-                Fake News e Verificação de Informações
-            </h2>
+            <div class="section-header">
+
+                <div class="section-tag warning-tag">
+                    MÓDULO 04 // ALERTA
+                </div>
+
+                <h2 id="titulo-fakenews">
+                    Fake News e Verificação de Informações
+                </h2>
+
+                <p class="section-subtitle">
+                    Informação também exige pensamento crítico.
+                </p>
+
+            </div>
 
 
             <div class="alert" role="alert">
 
-                <strong>Atenção:</strong>
+                <span class="alert-icon">⚠</span>
 
-                antes de compartilhar uma informação,
-                verifique se ela é verdadeira.
+                <div>
+                    <strong>Atenção:</strong>
+                    antes de compartilhar uma informação,
+                    verifique se ela é verdadeira.
+                </div>
 
             </div>
 
 
             <div class="fake-news">
+
+                <div class="content-label">
+                    // DETECÇÃO DE DESINFORMAÇÃO
+                </div>
 
                 <h3>
                     O que são Fake News?
@@ -418,8 +645,8 @@
                     As fake news, também conhecidas como notícias falsas,
                     são informações inventadas ou distorcidas que circulam
                     principalmente pela internet e pelas redes sociais.
-                    Muitas vezes, essas notícias são criadas para enganar
-                    as pessoas, influenciar opiniões ou causar medo e confusão.
+                    Muitas vezes, essas notícias são criadas para enganar as
+                    pessoas, influenciar opiniões ou causar medo e confusão.
                 </p>
 
                 <p>
@@ -434,62 +661,105 @@
             </div>
 
 
-            <h3>
+            <h3 class="verification-title">
                 Como verificar uma informação?
             </h3>
 
 
-            <!-- CARDS DE FAKE NEWS -->
-            <div class="cards">
+            <div class="cards verification-cards">
 
                 <article class="card">
 
+                    <div class="card-number">
+                        01
+                    </div>
+
+                    <div class="card-icon">
+                        🔎
+                    </div>
+
                     <h3>
-                        1. Cheque a fonte
+                        Cheque a fonte
                     </h3>
 
                     <p>
-                        Veja quem escreveu o conteúdo e confirme se o site ou canal é confiável antes de acreditar.
+                        Veja quem escreveu o conteúdo e confirme se o site ou canal
+                        é confiável antes de acreditar.
                     </p>
+
+                    <div class="card-line"></div>
 
                 </article>
 
 
                 <article class="card">
 
+                    <div class="card-number">
+                        02
+                    </div>
+
+                    <div class="card-icon">
+                        ◷
+                    </div>
+
                     <h3>
-                        2. Avalie a data
+                        Avalie a data
                     </h3>
 
                     <p>
-                        Notícias antigas costumam ser tiradas de contexto para enganar as pessoas.
+                        Notícias antigas costumam ser tiradas de contexto para
+                        enganar as pessoas.
                     </p>
+
+                    <div class="card-line"></div>
 
                 </article>
 
 
                 <article class="card">
 
+                    <div class="card-number">
+                        03
+                    </div>
+
+                    <div class="card-icon">
+                        ⇄
+                    </div>
+
                     <h3>
-                        3. Compare fontes
+                        Compare fontes
                     </h3>
 
                     <p>
-                        Procure a mesma informação em grandes portais de notícia para ver se o fato se confirma.
+                        Procure a mesma informação em grandes portais de notícia
+                        para ver se o fato se confirma.
                     </p>
+
+                    <div class="card-line"></div>
 
                 </article>
 
 
                 <article class="card">
 
+                    <div class="card-number">
+                        04
+                    </div>
+
+                    <div class="card-icon">
+                        🧠
+                    </div>
+
                     <h3>
-                        4. Pense antes
+                        Pense antes
                     </h3>
 
                     <p>
-                        Se você ficou na dúvida sobre a veracidade, não compartilhe com amigos ou redes sociais.
+                        Se você ficou na dúvida sobre a veracidade, não compartilhe
+                        com amigos ou redes sociais.
                     </p>
+
+                    <div class="card-line"></div>
 
                 </article>
 
@@ -498,13 +768,30 @@
 
             <div class="content-area">
 
+                <div class="content-label">
+                    // LABORATÓRIO DE VERIFICAÇÃO
+                </div>
+
                 <h3>
                     Espaço para análise de Fake News
                 </h3>
 
                 <p>
-                    Acesse aqui exemplos práticos, análises de casos e atividades para testar sua capacidade de identificar conteúdos falsos.
+                    Acesse aqui exemplos práticos, análises de casos e atividades
+                    para testar sua capacidade de identificar conteúdos falsos.
                 </p>
+
+                <div class="verification-meter">
+
+                    <span>ANÁLISE CRÍTICA</span>
+
+                    <div class="meter">
+                        <div></div>
+                    </div>
+
+                    <span>ATIVA</span>
+
+                </div>
 
             </div>
 
@@ -516,66 +803,113 @@
     <!-- RODAPÉ -->
     <footer>
 
-        <div class="container">
+        <div class="footer-glow"></div>
 
-            <p>
-                Site educativo sobre Robótica,
-                Tecnociência e Informação.
-            </p>
+        <div class="container footer-content">
 
-            <p>
-                Desenvolvido com foco em acessibilidade,
-                inclusão digital e pensamento crítico.
-            </p>
+            <div class="footer-main">
 
-            <h3>
-                Equipe
-            </h3>
+                <div>
 
-            <ul class="equipe">
+                    <div class="footer-logo">
+                        R.T.I.
+                    </div>
 
-                <li>
-                    Vinicius Lima
-                </li>
+                    <p>
+                        Site educativo sobre Robótica,
+                        Tecnociência e Informação.
+                    </p>
 
-                <li>
-                    Pedro Emanuel
-                </li>
+                    <p class="footer-description">
+                        Desenvolvido com foco em acessibilidade,
+                        inclusão digital e pensamento crítico.
+                    </p>
 
-                <li>
-                    Gabriel Maricato
-                </li>
+                </div>
 
-            </ul>
+
+                <div class="team">
+
+                    <h3>
+                        // EQUIPE
+                    </h3>
+
+                    <ul class="equipe">
+
+                        <li>
+                            <span>01</span>
+                            Vinicius Lima
+                        </li>
+
+                        <li>
+                            <span>02</span>
+                            Pedro Emanuel
+                        </li>
+
+                        <li>
+                            <span>03</span>
+                            Gabriel Maricato
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <span>
+                    SISTEMA EDUCATIVO • 2026
+                </span>
+
+                <span>
+                    ● ONLINE
+                </span>
+
+            </div>
 
         </div>
 
     </footer>
 
 
-    <!-- PLAYER DE ÁUDIO OCULTO (INVISÍVEL NA TELA) -->
-    <iframe 
+    <!-- PLAYER DE ÁUDIO -->
+    <iframe
         id="youtubeAudio"
-        width="0" 
-        height="0" 
-        src="https://www.youtube.com/embed/UIrgptDd-wA?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=UIrgptDd-wA" 
-        title="Áudio de fundo" 
-        frameborder="0" 
+        width="0"
+        height="0"
+        src="https://www.youtube.com/embed/UIrgptDd-wA?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=UIrgptDd-wA"
+        title="Áudio de fundo"
+        frameborder="0"
         allow="autoplay"
-        style="display: none; visibility: hidden;">
+        style="display:none; visibility:hidden;"
+    >
     </iframe>
 
-    <!-- JAVASCRIPT PRINCIPAL -->
+
+    <!-- JAVASCRIPT -->
     <script src="script.js"></script>
 
-    <!-- ATIVA O ÁUDIO AO PRIMEIRÍSSIMO CLIQUE EM QUALQUER LUGAR DO SITE -->
+
+    <!-- ATIVA A MÚSICA NO PRIMEIRO CLIQUE -->
     <script>
-        document.addEventListener('click', function() {
-            var player = document.getElementById('youtubeAudio');
+
+        document.addEventListener("click", function () {
+
+            const player =
+                document.getElementById("youtubeAudio");
+
             if (player) {
-                player.src = "https://www.youtube.com/embed/UIrgptDd-wA?enablejsapi=1&autoplay=1&mute=0&loop=1&playlist=UIrgptDd-wA";
+
+                player.src =
+                    "https://www.youtube.com/embed/UIrgptDd-wA?enablejsapi=1&autoplay=1&mute=0&loop=1&playlist=UIrgptDd-wA";
+
             }
+
         }, { once: true });
+
     </script>
 
 </body>

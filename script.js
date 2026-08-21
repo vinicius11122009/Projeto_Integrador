@@ -1,6 +1,12 @@
-/* =====================================================
+/* =========================================================
+   ROBÓTICA • TECNOCIÊNCIA • INFORMAÇÃO
+   JAVASCRIPT PRINCIPAL
+========================================================= */
+
+
+/* =========================================================
    MENU DE NAVEGAÇÃO
-===================================================== */
+========================================================= */
 
 const botoesMenu =
     document.querySelectorAll(".nav-button");
@@ -16,28 +22,51 @@ botoesMenu.forEach((botao) => {
         const idSecao =
             botao.dataset.section;
 
-        /* Remove seção ativa */
+
+        /* Remove todas as seções ativas */
+
         secoes.forEach((secao) => {
+
             secao.classList.remove("active");
+
         });
 
-        /* Remove botão ativo */
+
+        /* Remove todos os botões ativos */
+
         botoesMenu.forEach((btn) => {
+
             btn.classList.remove("active");
+
         });
 
-        /* Ativa o botão */
+
+        /* Ativa botão */
+
         botao.classList.add("active");
 
-        /* Mostra a seção */
+
+        /* Localiza seção */
+
         const secaoSelecionada =
             document.getElementById(idSecao);
 
+
+        if (!secaoSelecionada) {
+            return;
+        }
+
+
+        /* Ativa seção */
+
         secaoSelecionada.classList.add("active");
 
-        /* Coloca foco no título */
+
+        /* Foco no título */
+
         const titulo =
             secaoSelecionada.querySelector("h2");
+
 
         if (titulo) {
 
@@ -47,17 +76,28 @@ botoesMenu.forEach((botao) => {
             );
 
             titulo.focus();
+
         }
+
+
+        /* Volta para o começo do conteúdo */
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
     });
 
 });
 
 
-/* =====================================================
+/* =========================================================
    TAMANHO DA FONTE
-===================================================== */
+========================================================= */
 
 let tamanhoFonte = 18;
+
 
 const aumentarFonte =
     document.getElementById("aumentarFonte");
@@ -69,37 +109,49 @@ const fonteNormal =
     document.getElementById("fonteNormal");
 
 
-aumentarFonte.addEventListener("click", () => {
+if (aumentarFonte) {
 
-    if (tamanhoFonte < 28) {
+    aumentarFonte.addEventListener("click", () => {
 
-        tamanhoFonte += 2;
+        if (tamanhoFonte < 28) {
 
-        document.documentElement.style.setProperty(
-            "--tamanho-fonte",
-            `${tamanhoFonte}px`
-        );
-    }
-});
+            tamanhoFonte += 2;
 
+            document.documentElement.style.setProperty(
+                "--tamanho-fonte",
+                `${tamanhoFonte}px`
+            );
 
-diminuirFonte.addEventListener("click", () => {
+        }
 
-    if (tamanhoFonte > 14) {
+    });
 
-        tamanhoFonte -= 2;
-
-        document.documentElement.style.setProperty(
-            "--tamanho-fonte",
-            `${tamanhoFonte}px`
-        );
-    }
-});
+}
 
 
-/* =====================================================
-   ESPAÇAMENTO ENTRE LINHAS
-===================================================== */
+if (diminuirFonte) {
+
+    diminuirFonte.addEventListener("click", () => {
+
+        if (tamanhoFonte > 14) {
+
+            tamanhoFonte -= 2;
+
+            document.documentElement.style.setProperty(
+                "--tamanho-fonte",
+                `${tamanhoFonte}px`
+            );
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   ESPAÇAMENTO
+========================================================= */
 
 const botaoEspacamento =
     document.getElementById("espacamento");
@@ -107,136 +159,346 @@ const botaoEspacamento =
 let espacamentoAtivo = false;
 
 
-botaoEspacamento.addEventListener("click", () => {
+if (botaoEspacamento) {
 
-    espacamentoAtivo =
-        !espacamentoAtivo;
+    botaoEspacamento.addEventListener("click", () => {
 
-    document.documentElement.style.setProperty(
-        "--espacamento-linha",
-        espacamentoAtivo
-            ? "2.1"
-            : "1.6"
-    );
-
-    botaoEspacamento.setAttribute(
-        "aria-pressed",
-        espacamentoAtivo
-    );
-});
+        espacamentoAtivo =
+            !espacamentoAtivo;
 
 
-/* =====================================================
+        document.documentElement.style.setProperty(
+            "--espacamento-linha",
+            espacamentoAtivo
+                ? "2.1"
+                : "1.6"
+        );
+
+
+        botaoEspacamento.setAttribute(
+            "aria-pressed",
+            String(espacamentoAtivo)
+        );
+
+    });
+
+}
+
+
+/* =========================================================
    ALTO CONTRASTE
-===================================================== */
+========================================================= */
 
 const botaoContraste =
     document.getElementById("altoContraste");
 
 
-botaoContraste.addEventListener("click", () => {
+if (botaoContraste) {
 
-    const ativo =
-        document.body.classList.toggle(
+    botaoContraste.addEventListener("click", () => {
+
+        const ativo =
+            document.body.classList.toggle(
+                "high-contrast"
+            );
+
+
+        botaoContraste.setAttribute(
+            "aria-pressed",
+            String(ativo)
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   RESTAURAR ACESSIBILIDADE
+========================================================= */
+
+if (fonteNormal) {
+
+    fonteNormal.addEventListener("click", () => {
+
+
+        /* Fonte */
+
+        tamanhoFonte = 18;
+
+        document.documentElement.style.setProperty(
+            "--tamanho-fonte",
+            "18px"
+        );
+
+
+        /* Espaçamento */
+
+        espacamentoAtivo = false;
+
+        document.documentElement.style.setProperty(
+            "--espacamento-linha",
+            "1.6"
+        );
+
+
+        if (botaoEspacamento) {
+
+            botaoEspacamento.setAttribute(
+                "aria-pressed",
+                "false"
+            );
+
+        }
+
+
+        /* Contraste */
+
+        document.body.classList.remove(
             "high-contrast"
         );
 
-    botaoContraste.setAttribute(
-        "aria-pressed",
-        ativo
-    );
-});
+
+        if (botaoContraste) {
+
+            botaoContraste.setAttribute(
+                "aria-pressed",
+                "false"
+            );
+
+        }
+
+    });
+
+}
 
 
-/* =====================================================
-   RESTAURAR ACESSIBILIDADE
-===================================================== */
-
-fonteNormal.addEventListener("click", () => {
-
-    /* Fonte */
-    tamanhoFonte = 18;
-
-    document.documentElement.style.setProperty(
-        "--tamanho-fonte",
-        "18px"
-    );
-
-    /* Espaçamento */
-    espacamentoAtivo = false;
-
-    document.documentElement.style.setProperty(
-        "--espacamento-linha",
-        "1.6"
-    );
-
-    botaoEspacamento.setAttribute(
-        "aria-pressed",
-        "false"
-    );
-
-    /* Contraste */
-    document.body.classList.remove(
-        "high-contrast"
-    );
-
-    botaoContraste.setAttribute(
-        "aria-pressed",
-        "false"
-    );
-});
-
-
-/* =====================================================
+/* =========================================================
    ATALHOS DE TECLADO
-===================================================== */
+========================================================= */
 
 document.addEventListener(
     "keydown",
     (event) => {
 
-        /* Alt + 1 = Introdução */
-        if (event.altKey && event.key === "1") {
 
-            document
-                .querySelector(
+        /* Alt + 1 */
+
+        if (
+            event.altKey &&
+            event.key === "1"
+        ) {
+
+            const botao =
+                document.querySelector(
                     '[data-section="introducao"]'
-                )
-                .click();
+                );
+
+            if (botao) {
+                botao.click();
+            }
+
         }
 
 
-        /* Alt + 2 = Robótica */
-        if (event.altKey && event.key === "2") {
+        /* Alt + 2 */
 
-            document
-                .querySelector(
+        if (
+            event.altKey &&
+            event.key === "2"
+        ) {
+
+            const botao =
+                document.querySelector(
                     '[data-section="robotica"]'
-                )
-                .click();
+                );
+
+            if (botao) {
+                botao.click();
+            }
+
         }
 
 
-        /* Alt + 3 = Tecnociência */
-        if (event.altKey && event.key === "3") {
+        /* Alt + 3 */
 
-            document
-                .querySelector(
+        if (
+            event.altKey &&
+            event.key === "3"
+        ) {
+
+            const botao =
+                document.querySelector(
                     '[data-section="tecnociencia"]'
-                )
-                .click();
+                );
+
+            if (botao) {
+                botao.click();
+            }
+
         }
 
 
-        /* Alt + 4 = Fake News */
-        if (event.altKey && event.key === "4") {
+        /* Alt + 4 */
 
-            document
-                .querySelector(
+        if (
+            event.altKey &&
+            event.key === "4"
+        ) {
+
+            const botao =
+                document.querySelector(
                     '[data-section="fakenews"]'
-                )
-                .click();
+                );
+
+            if (botao) {
+                botao.click();
+            }
+
         }
 
     }
+);
+
+
+/* =========================================================
+   EFEITO DE DIGITAÇÃO NO TERMINAL
+========================================================= */
+
+const terminalTexto =
+    document.querySelector(".terminal-text");
+
+
+if (terminalTexto) {
+
+    const textoOriginal =
+        terminalTexto.textContent.trim();
+
+    terminalTexto.textContent = "";
+
+    let indice = 0;
+
+
+    function digitarTerminal() {
+
+        if (indice < textoOriginal.length) {
+
+            terminalTexto.textContent +=
+                textoOriginal.charAt(indice);
+
+            indice++;
+
+            setTimeout(
+                digitarTerminal,
+                55
+            );
+
+        }
+
+    }
+
+
+    setTimeout(
+        digitarTerminal,
+        700
+    );
+
+}
+
+
+/* =========================================================
+   EFEITO DE CURSOR / INTERAÇÃO NOS CARDS
+========================================================= */
+
+const cards =
+    document.querySelectorAll(".card");
+
+
+cards.forEach((card) => {
+
+    card.addEventListener(
+        "mousemove",
+        (event) => {
+
+            const rect =
+                card.getBoundingClientRect();
+
+            const x =
+                event.clientX - rect.left;
+
+            const y =
+                event.clientY - rect.top;
+
+
+            const rotateX =
+                ((y / rect.height) - 0.5) * -3;
+
+            const rotateY =
+                ((x / rect.width) - 0.5) * 3;
+
+
+            card.style.transform =
+                `
+                translateY(-8px)
+                perspective(700px)
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY}deg)
+                `;
+
+        }
+    );
+
+
+    card.addEventListener(
+        "mouseleave",
+        () => {
+
+            card.style.transform = "";
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   CONTROLE DE MÚSICA
+   A música continua sendo carregada pelo iframe do HTML.
+========================================================= */
+
+const player =
+    document.getElementById("youtubeAudio");
+
+
+document.addEventListener(
+    "click",
+    () => {
+
+        if (!player) {
+            return;
+        }
+
+
+        player.src =
+            "https://www.youtube.com/embed/UIrgptDd-wA?enablejsapi=1&autoplay=1&mute=0&loop=1&playlist=UIrgptDd-wA";
+
+    },
+    {
+        once: true
+    }
+);
+
+
+/* =========================================================
+   CONSOLE
+========================================================= */
+
+console.log(
+    "%c ROBÓTICA • TECNOCIÊNCIA • INFORMAÇÃO ",
+    "background:#050816;color:#00f0ff;font-size:16px;font-weight:bold;padding:8px;"
+);
+
+console.log(
+    "%c Sistema educacional carregado com sucesso.",
+    "color:#68ff9b;font-weight:bold;"
 );
