@@ -1,5 +1,5 @@
 /* =====================================================
-   MENU DE NAVEGAÇÃO
+   MENU
 ===================================================== */
 
 const botoesMenu =
@@ -26,25 +26,35 @@ botoesMenu.forEach((botao) => {
 
         botao.classList.add("active");
 
-        const secaoSelecionada =
+        const secao =
             document.getElementById(idSecao);
 
-        if (secaoSelecionada) {
+        if (!secao) {
+            return;
+        }
 
-            secaoSelecionada.classList.add("active");
+        secao.classList.add("active");
 
-            const titulo =
-                secaoSelecionada.querySelector("h2");
+        const titulo =
+            secao.querySelector("h2");
 
-            if (titulo) {
+        if (titulo) {
 
-                titulo.setAttribute(
-                    "tabindex",
-                    "-1"
-                );
+            titulo.setAttribute(
+                "tabindex",
+                "-1"
+            );
 
-                titulo.focus();
-            }
+            titulo.focus();
+        }
+
+        /*
+         * Se estiver lendo uma seção e trocar de página,
+         * interrompe a leitura para não misturar textos.
+         */
+
+        if (lendo) {
+            finalizarLeitura();
         }
 
     });
@@ -57,6 +67,7 @@ botoesMenu.forEach((botao) => {
 ===================================================== */
 
 let tamanhoFonte = 18;
+
 
 const aumentarFonte =
     document.getElementById("aumentarFonte");
@@ -71,40 +82,47 @@ const fonteNormal =
 function atualizarFonte() {
 
     document.documentElement.style.setProperty(
-        "--tamanho-fonte",
+        "--font-size",
         `${tamanhoFonte}px`
     );
+
 }
 
 
 if (aumentarFonte) {
 
-    aumentarFonte.addEventListener("click", () => {
+    aumentarFonte.addEventListener(
+        "click",
+        () => {
 
-        if (tamanhoFonte < 30) {
+            if (tamanhoFonte < 30) {
 
-            tamanhoFonte += 2;
+                tamanhoFonte += 2;
 
-            atualizarFonte();
+                atualizarFonte();
+            }
+
         }
-
-    });
+    );
 
 }
 
 
 if (diminuirFonte) {
 
-    diminuirFonte.addEventListener("click", () => {
+    diminuirFonte.addEventListener(
+        "click",
+        () => {
 
-        if (tamanhoFonte > 12) {
+            if (tamanhoFonte > 12) {
 
-            tamanhoFonte -= 2;
+                tamanhoFonte -= 2;
 
-            atualizarFonte();
+                atualizarFonte();
+            }
+
         }
-
-    });
+    );
 
 }
 
@@ -121,24 +139,27 @@ let espacamentoAtivo = false;
 
 if (botaoEspacamento) {
 
-    botaoEspacamento.addEventListener("click", () => {
+    botaoEspacamento.addEventListener(
+        "click",
+        () => {
 
-        espacamentoAtivo =
-            !espacamentoAtivo;
+            espacamentoAtivo =
+                !espacamentoAtivo;
 
-        document.documentElement.style.setProperty(
-            "--espacamento-linha",
-            espacamentoAtivo
-                ? "2.1"
-                : "1.6"
-        );
+            document.documentElement.style.setProperty(
+                "--line-height",
+                espacamentoAtivo
+                    ? "2.15"
+                    : "1.6"
+            );
 
-        botaoEspacamento.setAttribute(
-            "aria-pressed",
-            espacamentoAtivo
-        );
+            botaoEspacamento.setAttribute(
+                "aria-pressed",
+                espacamentoAtivo
+            );
 
-    });
+        }
+    );
 
 }
 
@@ -153,19 +174,22 @@ const botaoContraste =
 
 if (botaoContraste) {
 
-    botaoContraste.addEventListener("click", () => {
+    botaoContraste.addEventListener(
+        "click",
+        () => {
 
-        const ativo =
-            document.body.classList.toggle(
-                "high-contrast"
+            const ativo =
+                document.body.classList.toggle(
+                    "high-contrast"
+                );
+
+            botaoContraste.setAttribute(
+                "aria-pressed",
+                ativo
             );
 
-        botaoContraste.setAttribute(
-            "aria-pressed",
-            ativo
-        );
-
-    });
+        }
+    );
 
 }
 
@@ -176,46 +200,49 @@ if (botaoContraste) {
 
 if (fonteNormal) {
 
-    fonteNormal.addEventListener("click", () => {
+    fonteNormal.addEventListener(
+        "click",
+        () => {
 
-        tamanhoFonte = 18;
+            tamanhoFonte = 18;
 
-        atualizarFonte();
-
-
-        espacamentoAtivo = false;
-
-        document.documentElement.style.setProperty(
-            "--espacamento-linha",
-            "1.6"
-        );
+            atualizarFonte();
 
 
-        if (botaoEspacamento) {
+            espacamentoAtivo = false;
 
-            botaoEspacamento.setAttribute(
-                "aria-pressed",
-                "false"
+            document.documentElement.style.setProperty(
+                "--line-height",
+                "1.6"
             );
 
-        }
+
+            if (botaoEspacamento) {
+
+                botaoEspacamento.setAttribute(
+                    "aria-pressed",
+                    "false"
+                );
+
+            }
 
 
-        document.body.classList.remove(
-            "high-contrast"
-        );
-
-
-        if (botaoContraste) {
-
-            botaoContraste.setAttribute(
-                "aria-pressed",
-                "false"
+            document.body.classList.remove(
+                "high-contrast"
             );
 
-        }
 
-    });
+            if (botaoContraste) {
+
+                botaoContraste.setAttribute(
+                    "aria-pressed",
+                    "false"
+                );
+
+            }
+
+        }
+    );
 
 }
 
@@ -228,16 +255,16 @@ const player =
     document.getElementById("youtubeAudio");
 
 
-let playerPronto = false;
+let musicaAtivada = false;
 
 let musicaPausadaPelaLeitura = false;
 
 
 /* =====================================================
-   CONTROLE DA MÚSICA
+   COMANDOS YOUTUBE
 ===================================================== */
 
-function enviarComandoYoutube(comando) {
+function comandoYoutube(comando) {
 
     if (!player || !player.contentWindow) {
         return;
@@ -251,53 +278,45 @@ function enviarComandoYoutube(comando) {
         }),
         "*"
     );
+
 }
 
 
+/* =====================================================
+   PAUSAR MÚSICA
+===================================================== */
+
 function pausarMusica() {
 
-    enviarComandoYoutube("pauseVideo");
+    if (!musicaAtivada) {
+        return;
+    }
+
+    comandoYoutube("pauseVideo");
 
     musicaPausadaPelaLeitura = true;
 }
 
 
+/* =====================================================
+   VOLTAR MÚSICA
+===================================================== */
+
 function voltarMusica() {
 
-    if (musicaPausadaPelaLeitura) {
-
-        enviarComandoYoutube("playVideo");
-
-        musicaPausadaPelaLeitura = false;
+    if (!musicaPausadaPelaLeitura) {
+        return;
     }
+
+    comandoYoutube("playVideo");
+
+    musicaPausadaPelaLeitura = false;
 }
 
 
 /* =====================================================
-   ATIVA PLAYER DO YOUTUBE
-===================================================== */
-
-window.addEventListener("message", (event) => {
-
-    if (
-        event.data &&
-        typeof event.data === "string" &&
-        event.data.includes("onReady")
-    ) {
-
-        playerPronto = true;
-    }
-
-});
-
-
-/* =====================================================
    PRIMEIRO CLIQUE
-   ATIVA A MÚSICA COM SOM
 ===================================================== */
-
-let musicaAtivada = false;
-
 
 document.addEventListener(
     "click",
@@ -320,7 +339,7 @@ document.addEventListener(
 
 
 /* =====================================================
-   LEITURA POR VOZ
+   LEITURA DE TEXTO
 ===================================================== */
 
 const lerTexto =
@@ -333,35 +352,36 @@ const pararLeitura =
 let lendo = false;
 
 
-/*
-    Pega somente o conteúdo da seção que está visível.
-*/
+/* =====================================================
+   OBTER TEXTO DA SEÇÃO ATUAL
+===================================================== */
 
 function obterTextoParaLeitura() {
 
-    const secaoAtiva =
+    const secao =
         document.querySelector(
             ".content-section.active"
         );
 
-    if (!secaoAtiva) {
+    if (!secao) {
         return "";
     }
 
-
     const clone =
-        secaoAtiva.cloneNode(true);
+        secao.cloneNode(true);
 
 
     /*
-        Remove elementos que não precisam
-        ser lidos pelo leitor.
-    */
+     * Remove elementos visuais desnecessários
+     * para a leitura.
+     */
 
     clone.querySelectorAll(
-        "button, iframe"
+        ".card-icon, .card-number, .section-tag, .content-label"
     ).forEach((elemento) => {
+
         elemento.remove();
+
     });
 
 
@@ -377,7 +397,9 @@ function obterTextoParaLeitura() {
 
 function iniciarLeitura() {
 
-    if (!("speechSynthesis" in window)) {
+    if (
+        !("speechSynthesis" in window)
+    ) {
 
         alert(
             "Seu navegador não possui suporte à leitura por voz."
@@ -400,27 +422,26 @@ function iniciarLeitura() {
 
 
     /*
-        Primeiro para a música.
-    */
+     * A música para ANTES da voz começar.
+     */
 
     pausarMusica();
 
 
     const fala =
-        new SpeechSynthesisUtterance(texto);
+        new SpeechSynthesisUtterance(
+            texto
+        );
 
 
     fala.lang =
         "pt-BR";
 
-
     fala.rate =
-        0.95;
-
+        0.92;
 
     fala.pitch =
         1;
-
 
     fala.volume =
         1;
@@ -433,6 +454,7 @@ function iniciarLeitura() {
         document.body.classList.add(
             "reading-active"
         );
+
 
         if (lerTexto) {
 
@@ -460,7 +482,9 @@ function iniciarLeitura() {
     };
 
 
-    speechSynthesis.speak(fala);
+    speechSynthesis.speak(
+        fala
+    );
 }
 
 
@@ -470,7 +494,14 @@ function iniciarLeitura() {
 
 function finalizarLeitura() {
 
-    speechSynthesis.cancel();
+    if (
+        "speechSynthesis" in window
+    ) {
+
+        speechSynthesis.cancel();
+
+    }
+
 
     lendo = false;
 
@@ -491,9 +522,9 @@ function finalizarLeitura() {
 
 
     /*
-        Quando a leitura termina ou é parada,
-        a música volta.
-    */
+     * Quando parar a leitura,
+     * a música volta.
+     */
 
     voltarMusica();
 }
@@ -526,7 +557,7 @@ if (lerTexto) {
 
 
 /* =====================================================
-   BOTÃO PARAR LEITURA
+   BOTÃO PARAR
 ===================================================== */
 
 if (pararLeitura) {
@@ -544,28 +575,6 @@ if (pararLeitura) {
 
 
 /* =====================================================
-   SE MUDAR DE SEÇÃO DURANTE A LEITURA
-===================================================== */
-
-botoesMenu.forEach((botao) => {
-
-    botao.addEventListener(
-        "click",
-        () => {
-
-            if (lendo) {
-
-                finalizarLeitura();
-
-            }
-
-        }
-    );
-
-});
-
-
-/* =====================================================
    ATALHOS DE TECLADO
 ===================================================== */
 
@@ -578,55 +587,36 @@ document.addEventListener(
         }
 
 
-        if (event.key === "1") {
+        const atalhos = {
 
-            event.preventDefault();
+            "1": "introducao",
+            "2": "robotica",
+            "3": "tecnociencia",
+            "4": "fakenews"
 
-            document
-                .querySelector(
-                    '[data-section="introducao"]'
-                )
-                ?.click();
+        };
 
+
+        const secao =
+            atalhos[event.key];
+
+
+        if (!secao) {
+            return;
         }
 
 
-        if (event.key === "2") {
-
-            event.preventDefault();
-
-            document
-                .querySelector(
-                    '[data-section="robotica"]'
-                )
-                ?.click();
-
-        }
+        event.preventDefault();
 
 
-        if (event.key === "3") {
-
-            event.preventDefault();
-
-            document
-                .querySelector(
-                    '[data-section="tecnociencia"]'
-                )
-                ?.click();
-
-        }
+        const botao =
+            document.querySelector(
+                `[data-section="${secao}"]`
+            );
 
 
-        if (event.key === "4") {
-
-            event.preventDefault();
-
-            document
-                .querySelector(
-                    '[data-section="fakenews"]'
-                )
-                ?.click();
-
+        if (botao) {
+            botao.click();
         }
 
     }
