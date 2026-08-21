@@ -1,92 +1,47 @@
 /* =========================================================
-   ROBÓTICA • TECNOCIÊNCIA • INFORMAÇÃO
-   JAVASCRIPT PRINCIPAL
-========================================================= */
-
-
-/* =========================================================
    MENU DE NAVEGAÇÃO
 ========================================================= */
 
-const botoesMenu =
-    document.querySelectorAll(".nav-button");
-
-const secoes =
-    document.querySelectorAll(".content-section");
-
+const botoesMenu = document.querySelectorAll(".nav-button");
+const secoes = document.querySelectorAll(".content-section");
 
 botoesMenu.forEach((botao) => {
 
     botao.addEventListener("click", () => {
 
-        const idSecao =
-            botao.dataset.section;
-
-
-        /* Remove todas as seções ativas */
+        const idSecao = botao.dataset.section;
 
         secoes.forEach((secao) => {
-
             secao.classList.remove("active");
-
         });
-
-
-        /* Remove todos os botões ativos */
 
         botoesMenu.forEach((btn) => {
-
             btn.classList.remove("active");
-
         });
 
-
-        /* Ativa botão */
-
         botao.classList.add("active");
-
-
-        /* Localiza seção */
 
         const secaoSelecionada =
             document.getElementById(idSecao);
 
-
-        if (!secaoSelecionada) {
-            return;
-        }
-
-
-        /* Ativa seção */
+        if (!secaoSelecionada) return;
 
         secaoSelecionada.classList.add("active");
-
-
-        /* Foco no título */
 
         const titulo =
             secaoSelecionada.querySelector("h2");
 
-
         if (titulo) {
 
-            titulo.setAttribute(
-                "tabindex",
-                "-1"
-            );
+            titulo.setAttribute("tabindex", "-1");
 
             titulo.focus();
-
         }
-
-
-        /* Volta para o começo do conteúdo */
 
         window.scrollTo({
             top: 0,
             behavior: "smooth"
         });
-
     });
 
 });
@@ -98,7 +53,6 @@ botoesMenu.forEach((botao) => {
 
 let tamanhoFonte = 18;
 
-
 const aumentarFonte =
     document.getElementById("aumentarFonte");
 
@@ -109,6 +63,47 @@ const fonteNormal =
     document.getElementById("fonteNormal");
 
 
+function atualizarFonte() {
+
+    /*
+     * Altera a variável principal
+     */
+    document.documentElement.style.setProperty(
+        "--tamanho-fonte",
+        `${tamanhoFonte}px`
+    );
+
+
+    /*
+     * Cria uma escala baseada no tamanho escolhido.
+     *
+     * 18px = 1
+     * 20px = 1.11
+     * 22px = 1.22
+     * 24px = 1.33
+     * etc.
+     */
+    const escala =
+        tamanhoFonte / 18;
+
+
+    document.documentElement.style.setProperty(
+        "--escala-fonte",
+        escala
+    );
+
+
+    /*
+     * Mostra no console para facilitar testes.
+     */
+    console.log(
+        `Tamanho da fonte: ${tamanhoFonte}px`
+    );
+}
+
+
+/* AUMENTAR */
+
 if (aumentarFonte) {
 
     aumentarFonte.addEventListener("click", () => {
@@ -117,10 +112,7 @@ if (aumentarFonte) {
 
             tamanhoFonte += 2;
 
-            document.documentElement.style.setProperty(
-                "--tamanho-fonte",
-                `${tamanhoFonte}px`
-            );
+            atualizarFonte();
 
         }
 
@@ -128,6 +120,8 @@ if (aumentarFonte) {
 
 }
 
+
+/* DIMINUIR */
 
 if (diminuirFonte) {
 
@@ -137,10 +131,7 @@ if (diminuirFonte) {
 
             tamanhoFonte -= 2;
 
-            document.documentElement.style.setProperty(
-                "--tamanho-fonte",
-                `${tamanhoFonte}px`
-            );
+            atualizarFonte();
 
         }
 
@@ -169,9 +160,7 @@ if (botaoEspacamento) {
 
         document.documentElement.style.setProperty(
             "--espacamento-linha",
-            espacamentoAtivo
-                ? "2.1"
-                : "1.6"
+            espacamentoAtivo ? "2.1" : "1.6"
         );
 
 
@@ -214,25 +203,17 @@ if (botaoContraste) {
 
 
 /* =========================================================
-   RESTAURAR ACESSIBILIDADE
+   RESTAURAR
 ========================================================= */
 
 if (fonteNormal) {
 
     fonteNormal.addEventListener("click", () => {
 
-
-        /* Fonte */
-
         tamanhoFonte = 18;
 
-        document.documentElement.style.setProperty(
-            "--tamanho-fonte",
-            "18px"
-        );
+        atualizarFonte();
 
-
-        /* Espaçamento */
 
         espacamentoAtivo = false;
 
@@ -251,8 +232,6 @@ if (fonteNormal) {
 
         }
 
-
-        /* Contraste */
 
         document.body.classList.remove(
             "high-contrast"
@@ -281,79 +260,46 @@ document.addEventListener(
     "keydown",
     (event) => {
 
+        if (event.altKey && event.key === "1") {
 
-        /* Alt + 1 */
-
-        if (
-            event.altKey &&
-            event.key === "1"
-        ) {
-
-            const botao =
-                document.querySelector(
+            document
+                .querySelector(
                     '[data-section="introducao"]'
-                );
-
-            if (botao) {
-                botao.click();
-            }
+                )
+                ?.click();
 
         }
 
 
-        /* Alt + 2 */
+        if (event.altKey && event.key === "2") {
 
-        if (
-            event.altKey &&
-            event.key === "2"
-        ) {
-
-            const botao =
-                document.querySelector(
+            document
+                .querySelector(
                     '[data-section="robotica"]'
-                );
-
-            if (botao) {
-                botao.click();
-            }
+                )
+                ?.click();
 
         }
 
 
-        /* Alt + 3 */
+        if (event.altKey && event.key === "3") {
 
-        if (
-            event.altKey &&
-            event.key === "3"
-        ) {
-
-            const botao =
-                document.querySelector(
+            document
+                .querySelector(
                     '[data-section="tecnociencia"]'
-                );
-
-            if (botao) {
-                botao.click();
-            }
+                )
+                ?.click();
 
         }
 
 
-        /* Alt + 4 */
+        if (event.altKey && event.key === "4") {
 
-        if (
-            event.altKey &&
-            event.key === "4"
-        ) {
-
-            const botao =
-                document.querySelector(
+            document
+                .querySelector(
                     '[data-section="fakenews"]'
-                );
-
-            if (botao) {
-                botao.click();
-            }
+                )
+                ?.click();
 
         }
 
@@ -362,7 +308,60 @@ document.addEventListener(
 
 
 /* =========================================================
-   EFEITO DE DIGITAÇÃO NO TERMINAL
+   EFEITO DOS CARDS
+========================================================= */
+
+const cards =
+    document.querySelectorAll(".card");
+
+
+cards.forEach((card) => {
+
+    card.addEventListener(
+        "mousemove",
+        (event) => {
+
+            const rect =
+                card.getBoundingClientRect();
+
+            const x =
+                event.clientX - rect.left;
+
+            const y =
+                event.clientY - rect.top;
+
+            const rotateX =
+                ((y / rect.height) - 0.5) * -3;
+
+            const rotateY =
+                ((x / rect.width) - 0.5) * 3;
+
+            card.style.transform =
+                `
+                translateY(-8px)
+                perspective(700px)
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY}deg)
+                `;
+
+        }
+    );
+
+
+    card.addEventListener(
+        "mouseleave",
+        () => {
+
+            card.style.transform = "";
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   TERMINAL
 ========================================================= */
 
 const terminalTexto =
@@ -407,63 +406,7 @@ if (terminalTexto) {
 
 
 /* =========================================================
-   EFEITO DE CURSOR / INTERAÇÃO NOS CARDS
-========================================================= */
-
-const cards =
-    document.querySelectorAll(".card");
-
-
-cards.forEach((card) => {
-
-    card.addEventListener(
-        "mousemove",
-        (event) => {
-
-            const rect =
-                card.getBoundingClientRect();
-
-            const x =
-                event.clientX - rect.left;
-
-            const y =
-                event.clientY - rect.top;
-
-
-            const rotateX =
-                ((y / rect.height) - 0.5) * -3;
-
-            const rotateY =
-                ((x / rect.width) - 0.5) * 3;
-
-
-            card.style.transform =
-                `
-                translateY(-8px)
-                perspective(700px)
-                rotateX(${rotateX}deg)
-                rotateY(${rotateY}deg)
-                `;
-
-        }
-    );
-
-
-    card.addEventListener(
-        "mouseleave",
-        () => {
-
-            card.style.transform = "";
-
-        }
-    );
-
-});
-
-
-/* =========================================================
-   CONTROLE DE MÚSICA
-   A música continua sendo carregada pelo iframe do HTML.
+   MÚSICA
 ========================================================= */
 
 const player =
@@ -474,10 +417,7 @@ document.addEventListener(
     "click",
     () => {
 
-        if (!player) {
-            return;
-        }
-
+        if (!player) return;
 
         player.src =
             "https://www.youtube.com/embed/UIrgptDd-wA?enablejsapi=1&autoplay=1&mute=0&loop=1&playlist=UIrgptDd-wA";
@@ -490,15 +430,13 @@ document.addEventListener(
 
 
 /* =========================================================
-   CONSOLE
+   INICIALIZAÇÃO
 ========================================================= */
+
+atualizarFonte();
+
 
 console.log(
     "%c ROBÓTICA • TECNOCIÊNCIA • INFORMAÇÃO ",
     "background:#050816;color:#00f0ff;font-size:16px;font-weight:bold;padding:8px;"
-);
-
-console.log(
-    "%c Sistema educacional carregado com sucesso.",
-    "color:#68ff9b;font-weight:bold;"
 );
