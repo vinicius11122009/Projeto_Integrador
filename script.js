@@ -1,88 +1,136 @@
-/* =========================================================
+/* =====================================================
    MENU DE NAVEGAÇÃO
-========================================================= */
+===================================================== */
 
-const botoesMenu = document.querySelectorAll(".nav-button");
-const secoes = document.querySelectorAll(".content-section");
+const botoesMenu =
+    document.querySelectorAll(".nav-button");
+
+const secoes =
+    document.querySelectorAll(".content-section");
+
 
 botoesMenu.forEach((botao) => {
 
     botao.addEventListener("click", () => {
 
-        const idSecao = botao.dataset.section;
+        const idSecao =
+            botao.dataset.section;
+
+
+        /* Remove seção ativa */
 
         secoes.forEach((secao) => {
-            secao.classList.remove("active");
+
+            secao.classList.remove(
+                "active"
+            );
+
         });
+
+
+        /* Remove botão ativo */
 
         botoesMenu.forEach((btn) => {
-            btn.classList.remove("active");
+
+            btn.classList.remove(
+                "active"
+            );
+
         });
 
-        botao.classList.add("active");
+
+        /* Ativa botão */
+
+        botao.classList.add(
+            "active"
+        );
+
+
+        /* Encontra seção */
 
         const secaoSelecionada =
-            document.getElementById(idSecao);
+            document.getElementById(
+                idSecao
+            );
 
-        if (!secaoSelecionada) return;
 
-        secaoSelecionada.classList.add("active");
+        if (!secaoSelecionada) {
+            return;
+        }
+
+
+        /* Ativa seção */
+
+        secaoSelecionada.classList.add(
+            "active"
+        );
+
+
+        /* Coloca foco no título */
 
         const titulo =
-            secaoSelecionada.querySelector("h2");
+            secaoSelecionada.querySelector(
+                "h2"
+            );
+
 
         if (titulo) {
 
-            titulo.setAttribute("tabindex", "-1");
+            titulo.setAttribute(
+                "tabindex",
+                "-1"
+            );
 
             titulo.focus();
+
         }
+
+
+        /* Volta para o começo */
 
         window.scrollTo({
             top: 0,
             behavior: "smooth"
         });
+
     });
 
 });
 
 
-/* =========================================================
+/* =====================================================
    TAMANHO DA FONTE
-========================================================= */
+===================================================== */
 
 let tamanhoFonte = 18;
 
+
 const aumentarFonte =
-    document.getElementById("aumentarFonte");
+    document.getElementById(
+        "aumentarFonte"
+    );
+
 
 const diminuirFonte =
-    document.getElementById("diminuirFonte");
+    document.getElementById(
+        "diminuirFonte"
+    );
+
 
 const fonteNormal =
-    document.getElementById("fonteNormal");
+    document.getElementById(
+        "fonteNormal"
+    );
 
 
 function atualizarFonte() {
 
-    /*
-     * Altera a variável principal
-     */
     document.documentElement.style.setProperty(
         "--tamanho-fonte",
         `${tamanhoFonte}px`
     );
 
 
-    /*
-     * Cria uma escala baseada no tamanho escolhido.
-     *
-     * 18px = 1
-     * 20px = 1.11
-     * 22px = 1.22
-     * 24px = 1.33
-     * etc.
-     */
     const escala =
         tamanhoFonte / 18;
 
@@ -92,109 +140,510 @@ function atualizarFonte() {
         escala
     );
 
-
-    /*
-     * Mostra no console para facilitar testes.
-     */
-    console.log(
-        `Tamanho da fonte: ${tamanhoFonte}px`
-    );
 }
 
 
-/* AUMENTAR */
+/* Aumentar */
 
 if (aumentarFonte) {
 
-    aumentarFonte.addEventListener("click", () => {
+    aumentarFonte.addEventListener(
+        "click",
+        () => {
 
-        if (tamanhoFonte < 28) {
+            if (tamanhoFonte < 28) {
 
-            tamanhoFonte += 2;
+                tamanhoFonte += 2;
 
-            atualizarFonte();
+                atualizarFonte();
+
+            }
 
         }
-
-    });
+    );
 
 }
 
 
-/* DIMINUIR */
+/* Diminuir */
 
 if (diminuirFonte) {
 
-    diminuirFonte.addEventListener("click", () => {
+    diminuirFonte.addEventListener(
+        "click",
+        () => {
 
-        if (tamanhoFonte > 14) {
+            if (tamanhoFonte > 14) {
 
-            tamanhoFonte -= 2;
+                tamanhoFonte -= 2;
 
-            atualizarFonte();
+                atualizarFonte();
+
+            }
 
         }
-
-    });
+    );
 
 }
 
 
-/* =========================================================
-   ESPAÇAMENTO
-========================================================= */
+/* =====================================================
+   ESPAÇAMENTO ENTRE LINHAS
+===================================================== */
 
 const botaoEspacamento =
-    document.getElementById("espacamento");
+    document.getElementById(
+        "espacamento"
+    );
+
 
 let espacamentoAtivo = false;
 
 
 if (botaoEspacamento) {
 
-    botaoEspacamento.addEventListener("click", () => {
+    botaoEspacamento.addEventListener(
+        "click",
+        () => {
 
-        espacamentoAtivo =
-            !espacamentoAtivo;
-
-
-        document.documentElement.style.setProperty(
-            "--espacamento-linha",
-            espacamentoAtivo ? "2.1" : "1.6"
-        );
+            espacamentoAtivo =
+                !espacamentoAtivo;
 
 
-        botaoEspacamento.setAttribute(
-            "aria-pressed",
-            String(espacamentoAtivo)
-        );
+            document.documentElement.style.setProperty(
+                "--espacamento-linha",
+                espacamentoAtivo
+                    ? "2.1"
+                    : "1.6"
+            );
 
-    });
+
+            botaoEspacamento.setAttribute(
+                "aria-pressed",
+                String(espacamentoAtivo)
+            );
+
+        }
+    );
 
 }
 
 
-/* =========================================================
+/* =====================================================
    ALTO CONTRASTE
-========================================================= */
+===================================================== */
 
 const botaoContraste =
-    document.getElementById("altoContraste");
+    document.getElementById(
+        "altoContraste"
+    );
 
 
 if (botaoContraste) {
 
-    botaoContraste.addEventListener("click", () => {
+    botaoContraste.addEventListener(
+        "click",
+        () => {
 
-        const ativo =
-            document.body.classList.toggle(
+            const ativo =
+                document.body.classList.toggle(
+                    "high-contrast"
+                );
+
+
+            botaoContraste.setAttribute(
+                "aria-pressed",
+                String(ativo)
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   RESTAURAR ACESSIBILIDADE
+===================================================== */
+
+if (fonteNormal) {
+
+    fonteNormal.addEventListener(
+        "click",
+        () => {
+
+            /* Fonte */
+
+            tamanhoFonte = 18;
+
+            atualizarFonte();
+
+
+            /* Espaçamento */
+
+            espacamentoAtivo =
+                false;
+
+
+            document.documentElement.style.setProperty(
+                "--espacamento-linha",
+                "1.6"
+            );
+
+
+            if (botaoEspacamento) {
+
+                botaoEspacamento.setAttribute(
+                    "aria-pressed",
+                    "false"
+                );
+
+            }
+
+
+            /* Contraste */
+
+            document.body.classList.remove(
                 "high-contrast"
             );
 
 
-        botaoContraste.setAttribute(
-            "aria-pressed",
-            String(ativo)
+            if (botaoContraste) {
+
+                botaoContraste.setAttribute(
+                    "aria-pressed",
+                    "false"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   LEITOR DE VOZ
+===================================================== */
+
+const botaoLerTexto =
+    document.getElementById(
+        "lerTexto"
+    );
+
+
+const botaoPausarLeitura =
+    document.getElementById(
+        "pausarLeitura"
+    );
+
+
+const botaoContinuarLeitura =
+    document.getElementById(
+        "continuarLeitura"
+    );
+
+
+const botaoPararLeitura =
+    document.getElementById(
+        "pararLeitura"
+    );
+
+
+let leituraAtual = null;
+
+
+/* Verifica suporte */
+
+if (
+    !("speechSynthesis" in window)
+) {
+
+    if (botaoLerTexto) {
+
+        botaoLerTexto.disabled =
+            true;
+
+        botaoLerTexto.textContent =
+            "🔊 Leitura indisponível";
+
+    }
+
+} else {
+
+
+    /* =================================================
+       PEGAR TEXTO DA SEÇÃO
+    ================================================= */
+
+    function pegarTextoDaSecaoAtual() {
+
+        const secaoAtiva =
+            document.querySelector(
+                ".content-section.active"
+            );
+
+
+        if (!secaoAtiva) {
+
+            return "";
+
+        }
+
+
+        /*
+         * innerText pega apenas o conteúdo
+         * textual visível da seção.
+         */
+
+        return secaoAtiva.innerText
+            .replace(/\s+/g, " ")
+            .trim();
+
+    }
+
+
+    /* =================================================
+       LER TEXTO
+    ================================================= */
+
+    if (botaoLerTexto) {
+
+        botaoLerTexto.addEventListener(
+            "click",
+            () => {
+
+                /*
+                 * Para leitura anterior.
+                 */
+
+                window.speechSynthesis.cancel();
+
+
+                const texto =
+                    pegarTextoDaSecaoAtual();
+
+
+                if (!texto) {
+
+                    return;
+
+                }
+
+
+                leituraAtual =
+                    new SpeechSynthesisUtterance(
+                        texto
+                    );
+
+
+                /*
+                 * Português brasileiro
+                 */
+
+                leituraAtual.lang =
+                    "pt-BR";
+
+
+                /*
+                 * Velocidade
+                 */
+
+                leituraAtual.rate =
+                    1;
+
+
+                /*
+                 * Tom
+                 */
+
+                leituraAtual.pitch =
+                    1;
+
+
+                /*
+                 * Volume
+                 */
+
+                leituraAtual.volume =
+                    1;
+
+
+                /* Começou */
+
+                leituraAtual.onstart =
+                    () => {
+
+                        botaoLerTexto.setAttribute(
+                            "aria-pressed",
+                            "true"
+                        );
+
+
+                        botaoLerTexto.textContent =
+                            "🔊 Lendo...";
+
+                    };
+
+
+                /* Terminou */
+
+                leituraAtual.onend =
+                    () => {
+
+                        botaoLerTexto.setAttribute(
+                            "aria-pressed",
+                            "false"
+                        );
+
+
+                        botaoLerTexto.textContent =
+                            "🔊 Ler texto";
+
+                    };
+
+
+                /* Erro */
+
+                leituraAtual.onerror =
+                    () => {
+
+                        botaoLerTexto.setAttribute(
+                            "aria-pressed",
+                            "false"
+                        );
+
+
+                        botaoLerTexto.textContent =
+                            "🔊 Ler texto";
+
+                    };
+
+
+                /*
+                 * Inicia voz
+                 */
+
+                window.speechSynthesis.speak(
+                    leituraAtual
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =================================================
+       PAUSAR
+    ================================================= */
+
+    if (botaoPausarLeitura) {
+
+        botaoPausarLeitura.addEventListener(
+            "click",
+            () => {
+
+                if (
+                    window.speechSynthesis
+                        .speaking
+                ) {
+
+                    window.speechSynthesis.pause();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =================================================
+       CONTINUAR
+    ================================================= */
+
+    if (botaoContinuarLeitura) {
+
+        botaoContinuarLeitura.addEventListener(
+            "click",
+            () => {
+
+                if (
+                    window.speechSynthesis
+                        .paused
+                ) {
+
+                    window.speechSynthesis.resume();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =================================================
+       PARAR
+    ================================================= */
+
+    if (botaoPararLeitura) {
+
+        botaoPararLeitura.addEventListener(
+            "click",
+            () => {
+
+                window.speechSynthesis.cancel();
+
+
+                if (botaoLerTexto) {
+
+                    botaoLerTexto.setAttribute(
+                        "aria-pressed",
+                        "false"
+                    );
+
+
+                    botaoLerTexto.textContent =
+                        "🔊 Ler texto";
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =================================================
+       TROCA DE SEÇÃO
+    ================================================= */
+
+    botoesMenu.forEach((botao) => {
+
+        botao.addEventListener(
+            "click",
+            () => {
+
+                window.speechSynthesis.cancel();
+
+
+                if (botaoLerTexto) {
+
+                    botaoLerTexto.setAttribute(
+                        "aria-pressed",
+                        "false"
+                    );
+
+
+                    botaoLerTexto.textContent =
+                        "🔊 Ler texto";
+
+                }
+
+            }
         );
 
     });
@@ -202,65 +651,21 @@ if (botaoContraste) {
 }
 
 
-/* =========================================================
-   RESTAURAR
-========================================================= */
-
-if (fonteNormal) {
-
-    fonteNormal.addEventListener("click", () => {
-
-        tamanhoFonte = 18;
-
-        atualizarFonte();
-
-
-        espacamentoAtivo = false;
-
-        document.documentElement.style.setProperty(
-            "--espacamento-linha",
-            "1.6"
-        );
-
-
-        if (botaoEspacamento) {
-
-            botaoEspacamento.setAttribute(
-                "aria-pressed",
-                "false"
-            );
-
-        }
-
-
-        document.body.classList.remove(
-            "high-contrast"
-        );
-
-
-        if (botaoContraste) {
-
-            botaoContraste.setAttribute(
-                "aria-pressed",
-                "false"
-            );
-
-        }
-
-    });
-
-}
-
-
-/* =========================================================
+/* =====================================================
    ATALHOS DE TECLADO
-========================================================= */
+===================================================== */
 
 document.addEventListener(
     "keydown",
     (event) => {
 
-        if (event.altKey && event.key === "1") {
+
+        /* Alt + 1 */
+
+        if (
+            event.altKey &&
+            event.key === "1"
+        ) {
 
             document
                 .querySelector(
@@ -271,7 +676,12 @@ document.addEventListener(
         }
 
 
-        if (event.altKey && event.key === "2") {
+        /* Alt + 2 */
+
+        if (
+            event.altKey &&
+            event.key === "2"
+        ) {
 
             document
                 .querySelector(
@@ -282,7 +692,12 @@ document.addEventListener(
         }
 
 
-        if (event.altKey && event.key === "3") {
+        /* Alt + 3 */
+
+        if (
+            event.altKey &&
+            event.key === "3"
+        ) {
 
             document
                 .querySelector(
@@ -293,7 +708,12 @@ document.addEventListener(
         }
 
 
-        if (event.altKey && event.key === "4") {
+        /* Alt + 4 */
+
+        if (
+            event.altKey &&
+            event.key === "4"
+        ) {
 
             document
                 .querySelector(
@@ -307,12 +727,14 @@ document.addEventListener(
 );
 
 
-/* =========================================================
+/* =====================================================
    EFEITO DOS CARDS
-========================================================= */
+===================================================== */
 
 const cards =
-    document.querySelectorAll(".card");
+    document.querySelectorAll(
+        ".card"
+    );
 
 
 cards.forEach((card) => {
@@ -321,20 +743,45 @@ cards.forEach((card) => {
         "mousemove",
         (event) => {
 
+            /*
+             * Desativa efeito se usuário
+             * preferir menos movimento.
+             */
+
+            if (
+                window.matchMedia(
+                    "(prefers-reduced-motion: reduce)"
+                ).matches
+            ) {
+
+                return;
+
+            }
+
+
             const rect =
                 card.getBoundingClientRect();
 
+
             const x =
-                event.clientX - rect.left;
+                event.clientX -
+                rect.left;
+
 
             const y =
-                event.clientY - rect.top;
+                event.clientY -
+                rect.top;
+
 
             const rotateX =
-                ((y / rect.height) - 0.5) * -3;
+                ((y / rect.height) - 0.5)
+                * -3;
+
 
             const rotateY =
-                ((x / rect.width) - 0.5) * 3;
+                ((x / rect.width) - 0.5)
+                * 3;
+
 
             card.style.transform =
                 `
@@ -352,7 +799,8 @@ cards.forEach((card) => {
         "mouseleave",
         () => {
 
-            card.style.transform = "";
+            card.style.transform =
+                "";
 
         }
     );
@@ -360,12 +808,14 @@ cards.forEach((card) => {
 });
 
 
-/* =========================================================
-   TERMINAL
-========================================================= */
+/* =====================================================
+   EFEITO TERMINAL
+===================================================== */
 
 const terminalTexto =
-    document.querySelector(".terminal-text");
+    document.querySelector(
+        ".terminal-text"
+    );
 
 
 if (terminalTexto) {
@@ -373,23 +823,33 @@ if (terminalTexto) {
     const textoOriginal =
         terminalTexto.textContent.trim();
 
-    terminalTexto.textContent = "";
+
+    terminalTexto.textContent =
+        "";
+
 
     let indice = 0;
 
 
     function digitarTerminal() {
 
-        if (indice < textoOriginal.length) {
+        if (
+            indice <
+            textoOriginal.length
+        ) {
 
             terminalTexto.textContent +=
-                textoOriginal.charAt(indice);
+                textoOriginal.charAt(
+                    indice
+                );
+
 
             indice++;
 
+
             setTimeout(
                 digitarTerminal,
-                55
+                45
             );
 
         }
@@ -399,39 +859,15 @@ if (terminalTexto) {
 
     setTimeout(
         digitarTerminal,
-        700
+        600
     );
 
 }
 
 
-/* =========================================================
-   MÚSICA
-========================================================= */
-
-const player =
-    document.getElementById("youtubeAudio");
-
-
-document.addEventListener(
-    "click",
-    () => {
-
-        if (!player) return;
-
-        player.src =
-            "https://www.youtube.com/embed/UIrgptDd-wA?enablejsapi=1&autoplay=1&mute=0&loop=1&playlist=UIrgptDd-wA";
-
-    },
-    {
-        once: true
-    }
-);
-
-
-/* =========================================================
+/* =====================================================
    INICIALIZAÇÃO
-========================================================= */
+===================================================== */
 
 atualizarFonte();
 
